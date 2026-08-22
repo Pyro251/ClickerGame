@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dgce7qom7ets1"]
 
+[ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_fjik7"]
 [ext_resource type="Script" uid="uid://hbulci7vtad5" path="res://Scripts/leaderboard.gd" id="1_oxn4a"]
 [ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_0uewc"]
 
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_fjik7")
 script = ExtResource("1_oxn4a")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1008552039]
@@ -49,6 +51,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 62
 text = "Leaderboard"
+horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=492032958]
 layout_mode = 1
