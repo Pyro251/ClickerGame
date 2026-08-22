@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="3_35swg"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="4_naa1u"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="5_hektg"]
+[ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="7_hektg"]
 
 [sub_resource type="Theme" id="Theme_s1uoq"]
 default_font = ExtResource("1_kje2o")
@@ -170,5 +171,6 @@ theme_override_styles/normal = ExtResource("3_35swg")
 theme_override_styles/pressed = ExtResource("4_naa1u")
 theme_override_styles/hover = ExtResource("5_hektg")
 text = "Confirm?"
+script = ExtResource("7_hektg")
 
 [connection signal="pressed" from="BottomBackground/ConfirmButton" to="." method="_on_confirm_button_pressed"]

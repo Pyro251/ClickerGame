@@ -3,7 +3,7 @@ extends Control
 
 @onready var validation_label: Label = $VBoxContainer/ValidationLabel
 
-
+var can_find_session: bool = true
 
 
 func _on_submit_button_pressed() -> void:

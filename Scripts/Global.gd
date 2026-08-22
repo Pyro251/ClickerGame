@@ -1,6 +1,6 @@
 extends Node
 
-signal update_clicks
+signal update_clicks(clicks: int)
 signal save_game_signal
 signal game_saved
 

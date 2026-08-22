@@ -4,10 +4,12 @@ extends Control
 @onready var grid_container: GridContainer = $ScrollContainer/GridContainer
 @onready var shop_element: Button = $ScrollContainer/GridContainer/ShopElementTemplate2
 
+var spacing: float = 50.0
 
 func _process(delta: float) -> void:
 	money_label.text = str(Global.total_clicks)
-	grid_container.columns = ceil(get_viewport_rect().size.x / shop_element.size.x) - 2
+	grid_container.columns = max(1, get_viewport_rect().size.x / (shop_element.size.x + spacing))
+	#grid_container.columns = ceil(get_viewport_rect().size.x / shop_element.size.x)
 
 
 func _on_prestige_button_pressed() -> void:

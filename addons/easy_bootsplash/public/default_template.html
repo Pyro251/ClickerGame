@@ -1,0 +1,107 @@
+<div id="ebs" class="fit-{{fit}}">
+	<img id="ebs-art" alt="" data-src="{{IMAGE_SRC}}" onerror="this.remove()">
+	<div id="ebs-track" class="pos-{{progress_placement}} hidden-{{progress_hidden}}"><div id="ebs-fill"></div></div>
+</div>
+<style>
+	#ebs {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		--ebs-gap: 32px;
+		gap: var(--ebs-gap);
+		background: {{background_color}};
+		opacity: 1;
+		transition: opacity 0.35s ease-out;
+	}
+
+	#ebs.is-done {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	#ebs-art {
+		width: 256px;
+		max-width: 60vw;
+		height: auto;
+		max-height: 50vh;
+		object-fit: contain;
+	}
+
+	#ebs.fit-cover #ebs-art,
+	#ebs.fit-contain #ebs-art {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		max-height: none;
+	}
+
+	#ebs.fit-cover #ebs-art {
+		object-fit: cover;
+	}
+
+	#ebs.fit-contain #ebs-art {
+		object-fit: contain;
+	}
+
+	#ebs-track {
+		position: relative;
+		width: {{progress_width}};
+		height: {{progress_height}};
+		border-radius: {{progress_radius}};
+		overflow: hidden;
+		background: {{track_color}};
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 12px rgba(0, 0, 0, 0.3);
+	}
+
+	#ebs-track.hidden-true {
+		display: none;
+	}
+
+	#ebs-track.pos-top,
+	#ebs-track.pos-center,
+	#ebs-track.pos-bottom {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	#ebs-track.pos-top {
+		top: {{progress_margin}};
+	}
+
+	#ebs-track.pos-center {
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	#ebs-track.pos-bottom {
+		bottom: {{progress_margin}};
+	}
+
+	/* runtime.js measures the rendered art bottom into --ebs-art-bottom;
+	   clamped to the page bottom when there is no room under the image. */
+	#ebs.fit-cover #ebs-track.pos-below,
+	#ebs.fit-contain #ebs-track.pos-below {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: min(calc(var(--ebs-art-bottom, 100%) + var(--ebs-gap)), calc(100% - {{progress_margin}} - {{progress_height}}));
+	}
+
+	#ebs-fill {
+		width: var(--ebs-progress-percent, 0%);
+		height: 100%;
+		background: {{progress_color}};
+		transition: width 0.2s linear;
+	}
+
+	#ebs.is-smooth #ebs-fill {
+		transition: none;
+	}
+</style>

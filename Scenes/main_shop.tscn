@@ -3,10 +3,12 @@
 [ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="1_3l8r3"]
 [ext_resource type="Script" uid="uid://bu6qrtmlvcs1e" path="res://Scripts/main_shop.gd" id="1_i5bce"]
 [ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_s3uku"]
+[ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="3_5p6es"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="4_vug5v"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="5_52qyv"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="6_j7idd"]
 [ext_resource type="PackedScene" uid="uid://m5ttbtkxvuw" path="res://Scenes/shop_element_template.tscn" id="7_52qyv"]
+[ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="8_j7idd"]
 
 [sub_resource type="Theme" id="Theme_s1fef"]
 default_font = ExtResource("1_3l8r3")
@@ -29,6 +31,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_s1fef")
 script = ExtResource("1_i5bce")
+
+[node name="GuiTransition" type="Node" parent="." unique_id=623509313]
+script = ExtResource("3_5p6es")
+layout = NodePath("..")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransition2" type="Node" parent="." unique_id=366419573]
+script = ExtResource("3_5p6es")
+animation_enter = 3
+duration = 0.69
+layout = NodePath("..")
+group = NodePath("../ScrollContainer/GridContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="BG" type="ColorRect" parent="." unique_id=1776494938]
 layout_mode = 1
@@ -67,38 +82,17 @@ label_settings = SubResource("LabelSettings_i5bce")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.86300004
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -78.0
-offset_top = -0.020019531
-offset_right = 70.0
-offset_bottom = 18.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
-
-[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_s3uku")]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 25.0
-offset_right = 119.0
-offset_bottom = 125.0
-scene_path = "uid://1ko13v6hoo2e"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1495629705]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.039
 anchor_top = 0.192
-anchor_right = 0.96000004
+anchor_right = 0.98700005
 anchor_bottom = 0.77900004
-offset_left = -48.08
+offset_left = -33.08
 offset_top = 0.32000732
-offset_right = 15.799988
-offset_bottom = 23.339966
+offset_right = -0.64001465
+offset_bottom = 128.33997
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
@@ -134,6 +128,27 @@ layout_mode = 2
 [node name="ShopElementTemplate6" parent="ScrollContainer/GridContainer" unique_id=1983762371 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 
+[node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.86300004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -0.020019531
+offset_right = 70.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_s3uku")]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 25.0
+offset_right = 119.0
+offset_bottom = 125.0
+scene_path = "uid://1ko13v6hoo2e"
+
 [node name="PrestigeButton" type="Button" parent="." unique_id=884240514]
 layout_mode = 1
 anchors_preset = -1
@@ -155,5 +170,6 @@ theme_override_styles/normal = ExtResource("4_vug5v")
 theme_override_styles/pressed = ExtResource("5_52qyv")
 theme_override_styles/hover = ExtResource("6_j7idd")
 text = "Prestige"
+script = ExtResource("8_j7idd")
 
 [connection signal="pressed" from="PrestigeButton" to="." method="_on_prestige_button_pressed"]

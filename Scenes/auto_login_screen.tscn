@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://ba0lxtqgdci41"]
+
+[ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_2lkn2"]
+[ext_resource type="Script" uid="uid://dim13a2ev4adr" path="res://Scripts/auto_login_screen.gd" id="1_6jndp"]
+[ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="3_u14cq"]
+[ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="4_ahx1q"]
+[ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="5_lxx4i"]
+[ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="6_dt52p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hd4bb"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lkn2"]
+font_size = 55
+
+[node name="AutoLoginScreen" type="Control" unique_id=721662126]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2lkn2")
+script = ExtResource("1_6jndp")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1126577493]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=826931354]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.5
+offset_top = -153.5
+offset_right = 287.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Logging In..."
+label_settings = SubResource("LabelSettings_hd4bb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="." unique_id=523005229]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.5
+offset_top = 334.5
+offset_right = 287.5
+offset_bottom = 497.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Finding session"
+label_settings = SubResource("LabelSettings_2lkn2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogInButton" type="Button" parent="." unique_id=1940453874]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.5
+offset_top = 464.0
+offset_right = 303.5
+offset_bottom = 592.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("3_u14cq")
+theme_override_styles/pressed = ExtResource("4_ahx1q")
+theme_override_styles/hover = ExtResource("5_lxx4i")
+text = "Switch Accounts"
+script = ExtResource("6_dt52p")

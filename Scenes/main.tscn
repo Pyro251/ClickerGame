@@ -128,13 +128,15 @@ metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="PlayerNameLabel" type="Label" parent="." unique_id=987146769]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -272.0
-offset_top = 34.0
-offset_right = 273.0
-offset_bottom = 101.0
+anchors_preset = -1
+anchor_left = 0.12200001
+anchor_top = 0.022000002
+anchor_right = 0.86800003
+anchor_bottom = 0.066
+offset_left = 0.15999603
+offset_top = 0.11999893
+offset_right = 0.039978027
+offset_bottom = -0.6399994
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
@@ -142,6 +144,7 @@ text = "Player Name Loading...."
 label_settings = SubResource("LabelSettings_s1fef")
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 5
 
 [node name="SettingsButton" type="TextureButton" parent="." unique_id=1753440385]
 layout_mode = 1
@@ -173,6 +176,7 @@ offset_right = 308.5
 offset_bottom = -396.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(1, 0)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 85
 text = "Score Loading...."
@@ -309,6 +313,9 @@ theme_override_styles/pressed = ExtResource("8_6iyac")
 theme_override_styles/hover = ExtResource("9_fdnlq")
 text = "Save"
 script = ExtResource("4_21xkr")
+
+[node name="ParticleSpawnMarker" type="Marker2D" parent="." unique_id=888380600]
+position = Vector2(547, 308)
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
