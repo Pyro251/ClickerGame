@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://1ko13v6hoo2e"]
+
+[ext_resource type="Script" uid="uid://n6lpkqp632w5" path="res://Scenes/main.gd" id="1_jjgbg"]
+
+[node name="Main" type="Node2D" unique_id=2132958588]
+script = ExtResource("1_jjgbg")
+
+[node name="PlayerNameLabel" type="Label" parent="." unique_id=987146769]
+offset_right = 721.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "Player Name Loading...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalClicksLabel" type="Label" parent="." unique_id=2127403009]
+offset_left = 89.0
+offset_top = 536.0
+offset_right = 639.0
+offset_bottom = 620.0
+theme_override_font_sizes/font_size = 54
+text = "Score Loading...."
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ClickButton" type="Button" parent="." unique_id=1015561856]
+offset_left = 79.0
+offset_top = 635.0
+offset_right = 647.0
+offset_bottom = 817.0
+theme_override_font_sizes/font_size = 81
+text = "Click Here"
+
+[connection signal="pressed" from="ClickButton" to="." method="_on_click_button_pressed"]

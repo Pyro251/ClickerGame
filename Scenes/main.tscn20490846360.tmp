@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://1ko13v6hoo2e"]
+
+[ext_resource type="Script" uid="uid://n6lpkqp632w5" path="res://Scenes/main.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b56js1masyvrm" path="res://Scripts/main_stats.gd" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://o0bhg31tmg56" path="res://Scripts/main_saves_api.gd" id="4_jjvhh"]
+
+[node name="Main" type="Node" unique_id=46941983]
+script = ExtResource("1_jjgbg")
+id = "1"
+metadata/_custom_type_script = "uid://r3fisihyip7e"
+
+[node name="PlayerNameLabel" type="Label" parent="." unique_id=987146769]
+offset_right = 721.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "Player Name Loading...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalClicksLabel" type="Label" parent="." unique_id=2127403009]
+offset_left = 89.0
+offset_top = 536.0
+offset_right = 639.0
+offset_bottom = 620.0
+theme_override_font_sizes/font_size = 54
+text = "Score Loading...."
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ClickButton" type="Button" parent="." unique_id=1015561856]
+offset_left = 79.0
+offset_top = 635.0
+offset_right = 647.0
+offset_bottom = 817.0
+theme_override_font_sizes/font_size = 81
+text = "Click Here"
+
+[node name="ManuelSaveButton" type="Button" parent="." unique_id=1276547108]
+offset_left = 79.0
+offset_top = 836.0
+offset_right = 647.0
+offset_bottom = 955.0
+theme_override_font_sizes/font_size = 81
+text = "Save"
+
+[node name="StatsAPI" type="Node" parent="." unique_id=1685101835]
+script = ExtResource("3_8gbba")
+metadata/_custom_type_script = "uid://xeuokfxfaoek"
+
+[node name="SavesAPI" type="Node" parent="." unique_id=780389971]
+script = ExtResource("4_jjvhh")
+metadata/_custom_type_script = "uid://dynh0qu46xw0u"
+
+[connection signal="pressed" from="ClickButton" to="." method="_on_click_button_pressed"]
+[connection signal="pressed" from="ManuelSaveButton" to="." method="_on_manuel_save_button_pressed"]

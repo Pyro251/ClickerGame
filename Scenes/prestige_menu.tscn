@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://cnawc05yo2ul2"]
+
+[ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="1_kje2o"]
+[ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_imf8p"]
+[ext_resource type="Script" uid="uid://bx7repcpcmu00" path="res://Scripts/prestige_menu.gd" id="2_naa1u"]
+[ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="3_35swg"]
+[ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="4_naa1u"]
+[ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="5_hektg"]
+
+[sub_resource type="Theme" id="Theme_s1uoq"]
+default_font = ExtResource("1_kje2o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imf8p"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_hc3ra"]
+font = ExtResource("1_kje2o")
+font_size = 87
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_35swg"]
+font = ExtResource("1_kje2o")
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vmb5"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[node name="PrestigeMenu" type="Control" unique_id=850218984]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s1uoq")
+script = ExtResource("2_naa1u")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1225790448]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+
+[node name="TopBackground" type="Panel" parent="." unique_id=1240627579]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_imf8p")
+
+[node name="Title" type="Label" parent="TopBackground" unique_id=938860527]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 64.0
+offset_right = 133.0
+offset_bottom = 170.0
+grow_horizontal = 2
+text = "Prestige"
+label_settings = SubResource("LabelSettings_hc3ra")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_imf8p")]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 25.0
+offset_right = 119.0
+offset_bottom = 125.0
+scene_path = "uid://cl0cf8egqb07u"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1711403554]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.16000001
+anchor_right = 0.95300007
+anchor_bottom = 0.61300004
+offset_left = -0.040000916
+offset_top = 0.5999756
+offset_right = -0.16003418
+offset_bottom = -0.020080566
+
+[node name="CurrentMoneyTitlelabel" type="Label" parent="VBoxContainer" unique_id=873128393]
+layout_mode = 2
+text = "Current Money:"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentMoneyLabel" type="Label" parent="VBoxContainer" unique_id=1496737160]
+layout_mode = 2
+text = "####"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PreviousMoneyMultiplayerTitleLabel" type="Label" parent="VBoxContainer" unique_id=1628260809]
+layout_mode = 2
+text = "Previous Money Multiplier:"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PreviousMoneyMultiplierLabel" type="Label" parent="VBoxContainer" unique_id=1314231898]
+layout_mode = 2
+text = "####"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewMoneyMultiplierTitleLabel" type="Label" parent="VBoxContainer" unique_id=795611455]
+layout_mode = 2
+text = "New Money Multiplier:"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewMoneyMultiplierLabel" type="Label" parent="VBoxContainer" unique_id=1087329570]
+layout_mode = 2
+text = "####"
+label_settings = SubResource("LabelSettings_35swg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomBackground" type="Panel" parent="." unique_id=1189239223]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.86300004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -0.020019531
+offset_right = 70.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vmb5")
+
+[node name="ConfirmButton" type="Button" parent="BottomBackground" unique_id=1008087505]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.134
+anchor_top = 0.127
+anchor_right = 0.87900007
+anchor_bottom = 0.808
+offset_left = -0.3120041
+offset_top = -0.08300018
+offset_right = 0.027954102
+offset_bottom = -0.03201294
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("3_35swg")
+theme_override_styles/pressed = ExtResource("4_naa1u")
+theme_override_styles/hover = ExtResource("5_hektg")
+text = "Confirm?"
+
+[connection signal="pressed" from="BottomBackground/ConfirmButton" to="." method="_on_confirm_button_pressed"]

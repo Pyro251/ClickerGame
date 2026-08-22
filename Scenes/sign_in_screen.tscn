@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://d1ew4lp8otd7u"]
+
+[ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_5konv"]
+[ext_resource type="Script" uid="uid://hlfg3she5eoa" path="res://Scenes/sign_in_screen.gd" id="1_pbk4u"]
+[ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_hu61l"]
+[ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="3_g3au0"]
+[ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="3_l5pxi"]
+[ext_resource type="StyleBox" uid="uid://b5mhi1dmuvhmy" path="res://resources/LineEditStyles/normal.tres" id="4_5konv"]
+[ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="5_4aepi"]
+[ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="6_2hs17"]
+[ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="7_eodnw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
+font_size = 119
+
+[sub_resource type="Theme" id="Theme_s1fef"]
+default_font = ExtResource("3_g3au0")
+default_font_size = 43
+
+[node name="SignInScreen" type="Control" unique_id=338585810]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5konv")
+script = ExtResource("1_pbk4u")
+
+[node name="BG" type="ColorRect" parent="." unique_id=2119018601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+
+[node name="GuiTransition" type="Node" parent="." unique_id=1227434303]
+script = ExtResource("2_hu61l")
+auto_start = 1
+fade_layout = 1
+animation_enter = 0
+animation_leave = 1
+duration = 0.8
+layout = NodePath("..")
+group = NodePath("../VBoxContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1929864233]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 185.0
+grow_horizontal = 2
+text = "Register"
+label_settings = SubResource("LabelSettings_s1fef")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=34185217]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -264.5
+offset_right = 300.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s1fef")
+theme_override_constants/separation = 43
+
+[node name="ValidationLabel" type="Label" parent="VBoxContainer" unique_id=33541972]
+visible = false
+layout_mode = 2
+text = "Validation Label"
+horizontal_alignment = 1
+
+[node name="UsernameLineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1485211717]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("4_5konv")
+theme_override_styles/read_only = ExtResource("4_5konv")
+theme_override_styles/focus = ExtResource("4_5konv")
+placeholder_text = "Username"
+alignment = 1
+
+[node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer" unique_id=45470042]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("4_5konv")
+theme_override_styles/read_only = ExtResource("4_5konv")
+theme_override_styles/focus = ExtResource("4_5konv")
+placeholder_text = "Password"
+alignment = 1
+secret = true
+
+[node name="SubmitButton" type="Button" parent="VBoxContainer" unique_id=910063687]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("5_4aepi")
+theme_override_styles/pressed = ExtResource("6_2hs17")
+theme_override_styles/hover = ExtResource("7_eodnw")
+text = "Sign Up"
+script = ExtResource("3_l5pxi")
+
+[node name="LogInButton" type="Button" parent="VBoxContainer" unique_id=2124631813]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("5_4aepi")
+theme_override_styles/pressed = ExtResource("6_2hs17")
+theme_override_styles/hover = ExtResource("7_eodnw")
+text = "Log in"
+script = ExtResource("3_l5pxi")
+
+[node name="DevLogInButton" type="Button" parent="VBoxContainer" unique_id=844176551]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("5_4aepi")
+theme_override_styles/pressed = ExtResource("6_2hs17")
+theme_override_styles/hover = ExtResource("7_eodnw")
+text = "Dev log in"
+script = ExtResource("3_l5pxi")
+
+[connection signal="text_changed" from="VBoxContainer/UsernameLineEdit" to="." method="_on_username_line_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/PasswordLineEdit" to="." method="_on_password_line_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LogInButton" to="." method="_on_log_in_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DevLogInButton" to="." method="_on_dev_log_in_button_pressed"]

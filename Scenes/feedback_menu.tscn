@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://bl6lo4m7lwnrf"]
+
+[ext_resource type="Script" uid="uid://cnkhhmd18go21" path="res://Scripts/feedback_menu.gd" id="1_82o3s"]
+[ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="1_wtgro"]
+[ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_546wo"]
+[ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="3_fsj2h"]
+[ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="4_2lrc5"]
+[ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="5_xb4bf"]
+
+[sub_resource type="Theme" id="Theme_fjik7"]
+default_font = ExtResource("1_wtgro")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr3mb"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
+font_size = 67
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82o3s"]
+bg_color = Color(0.8, 0.8352941, 0.68235296, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+shadow_color = Color(0, 0, 0, 0.32156864)
+shadow_size = 48
+shadow_offset = Vector2(0, 64.345)
+
+[sub_resource type="Theme" id="Theme_546wo"]
+default_font_size = 49
+
+[node name="FeedbackMenu" type="Control" unique_id=1394810805]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fjik7")
+script = ExtResource("1_82o3s")
+
+[node name="BG" type="ColorRect" parent="." unique_id=2103562276]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+
+[node name="TopBackground" type="Panel" parent="." unique_id=1767923420]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kr3mb")
+
+[node name="Title" type="Label" parent="." unique_id=331090631]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.99998
+offset_top = 32.0
+offset_right = 242.0
+offset_bottom = 124.0
+grow_horizontal = 2
+text = "Send Feedback"
+label_settings = SubResource("LabelSettings_s1fef")
+
+[node name="FeedbackPanel" type="Panel" parent="." unique_id=317542025]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058000002
+anchor_top = 0.179
+anchor_right = 0.92100006
+anchor_bottom = 0.77400005
+offset_left = 0.23999786
+offset_top = -0.66000366
+offset_right = -0.12005615
+offset_bottom = 0.039916992
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_82o3s")
+
+[node name="MarginContainer" type="MarginContainer" parent="FeedbackPanel" unique_id=1425967063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 62.0
+offset_right = -54.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FeedbackPanel/MarginContainer" unique_id=1995585240]
+layout_mode = 2
+theme = SubResource("Theme_546wo")
+theme_override_constants/separation = 23
+
+[node name="TextEdit" type="TextEdit" parent="FeedbackPanel/MarginContainer/VBoxContainer" unique_id=1798559381]
+custom_minimum_size = Vector2(0, 691.265)
+layout_mode = 2
+placeholder_text = "Put feedback here"
+
+[node name="SubmitFeedbackButton" type="Button" parent="FeedbackPanel/MarginContainer/VBoxContainer" unique_id=538101743]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("3_fsj2h")
+theme_override_styles/pressed = ExtResource("4_2lrc5")
+theme_override_styles/hover = ExtResource("5_xb4bf")
+text = "Submit Feedback"
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_546wo")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 22.0
+offset_right = 100.0
+offset_bottom = 122.0
+scene_path = "uid://dq8qwabwqnnjl"
+
+[connection signal="text_changed" from="FeedbackPanel/MarginContainer/VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="FeedbackPanel/MarginContainer/VBoxContainer/SubmitFeedbackButton" to="." method="_on_submit_feedback_button_pressed"]
