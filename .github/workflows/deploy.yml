@@ -23,7 +23,7 @@ jobs:
           relative_export_path: ./build/web
 
       - name: Copy Headers Config
-        run: cp vercel.json ./build/web/
+        run: cp vercel.json ./build/web/Web/
 
       - name: Push to Vercel Branch
         uses: s0/git-publish-subdir-action@develop
