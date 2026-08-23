@@ -37,7 +37,7 @@ func fetch_and_display_leaderboards() -> void:
 			# display_name falls back to the alias identifier (username) automatically
 			var player_name = entry.player_alias.display_name
 
-			bbcode += "#%d %s - [b]%s[/b]\n" % [rank, player_name, str(score)]
+			bbcode += "#%d %s - [b]%s[/b]\n" % [rank, player_name, str(score),]
 	else:
 		bbcode += "[center]No scores yet![/center]\n"
 

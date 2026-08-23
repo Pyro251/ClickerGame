@@ -13,6 +13,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
 font_size = 119
 
+[sub_resource type="LabelSettings" id="LabelSettings_5konv"]
+font_size = 53
+
 [sub_resource type="Theme" id="Theme_s1fef"]
 default_font = ExtResource("3_g3au0")
 default_font_size = 43
@@ -57,6 +60,18 @@ offset_bottom = 185.0
 grow_horizontal = 2
 text = "Register"
 label_settings = SubResource("LabelSettings_s1fef")
+horizontal_alignment = 1
+
+[node name="TitleLabel2" type="Label" parent="." unique_id=1351570884]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 183.0
+offset_bottom = 328.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "or log in"
+label_settings = SubResource("LabelSettings_5konv")
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=34185217]
