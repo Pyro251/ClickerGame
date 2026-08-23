@@ -23,6 +23,13 @@ Talo="*uid://bpmdn8oc34pg7"
 GuiTransitions="*uid://lbwvyqfdnu7x"
 EBSAutoHide="*uid://b1gen7vlnx0bi"
 
+[debug]
+
+gdscript/warnings/inference_on_variant=1
+gdscript/warnings/native_method_override=1
+gdscript/warnings/get_node_default_without_onready=1
+gdscript/warnings/onready_with_export=1
+
 [display]
 
 window/size/viewport_width=720
