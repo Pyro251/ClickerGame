@@ -36,7 +36,7 @@ func list_props(channel_id: int, keys: Array[String]) -> Array[TaloChannelStorag
 			keys_to_fetch.append(key)
 
 	if keys_to_fetch.size() > 0:
-		var fetched_props := await Talo.channels.list_storage_props(channel_id, keys_to_fetch, true)
+		var fetched_props = await Talo.channels.list_storage_props(channel_id, keys_to_fetch, true)
 		for prop in fetched_props:
 			upsert_prop(channel_id, prop)
 			result.append(prop)

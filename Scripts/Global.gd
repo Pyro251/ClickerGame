@@ -45,7 +45,7 @@ func update_leaderboard():
 	var metadata: Dictionary[String, Variant] = {
 		"username": username
 	}
-	var res := await Talo.leaderboards.add_entry(lboard_name, total_clicks, metadata)
+	var res = await Talo.leaderboards.add_entry(lboard_name, total_clicks, metadata)
 	print("Added score: %s, at position: %s, new high score: %s" % [Global.total_clicks, res.entry.position, "yes" if res.updated else "no"])
 #func register_fields():
 	#register_field("total_clicks", total_clicks)

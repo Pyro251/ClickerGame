@@ -135,8 +135,8 @@ func update_current_save(new_name: String = "") -> TaloGameSave:
 
 ## Update the given save using the current state of the game and with the given name.
 func update_save(save: TaloGameSave, new_name: String = "") -> TaloGameSave:
-	var is_offline := await Talo.is_offline()
-	var can_update_save := Talo.identity_check() == OK or is_offline
+	var is_offline = await Talo.is_offline()
+	var can_update_save = Talo.identity_check() == OK or is_offline
 	if not can_update_save:
 		return null
 

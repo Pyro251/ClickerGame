@@ -43,12 +43,12 @@ func _identify_player() -> void:
 	send("v1.players.identify", payload)
 
 func _get_socket_url(ticket: String) -> String:
-	var url := Talo.settings.socket_url
+	var url = Talo.settings.socket_url
 	return "%s/?ticket=%s" % [url, ticket]
 
 ## Open the connection to the Talo Socket server. A new ticket is created to authenticate the connection.
 func open_connection():
-	var ticket := await Talo.socket_tickets.create_ticket()
+	var ticket = await Talo.socket_tickets.create_ticket()
 
 	var err := _socket.connect_to_url(_get_socket_url(ticket))
 	if err != OK:
