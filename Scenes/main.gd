@@ -69,6 +69,8 @@ func _on_click_button_pressed() -> void:
 	prestige_label.text = str("Prestige Points: ", int(Global.new_money_multiplier - Global.money_multiplier))
 	prestige_progress_bar.value = Global.prestige_progress
 	
+	Input.vibrate_handheld(3, 50)
+	
 	print("Prestige Weight: ", Global.prestige_weight)
 	print("Prestige Progress: ", Global.prestige_progress)
 	print("Total clicks: ", Global.total_clicks)
