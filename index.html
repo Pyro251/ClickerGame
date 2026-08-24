@@ -2,197 +2,687 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Clicker Game (Talo)</title>
 		<style>
-body {
-	touch-action: none;
+html, body, #canvas {
 	margin: 0;
-	border: 0 none;
 	padding: 0;
-	text-align: center;
+	border: 0;
+}
+
+body {
+	color: white;
 	background-color: black;
+	overflow: hidden;
+	touch-action: none;
 }
 
 #canvas {
 	display: block;
-	margin: 0;
-	color: white;
 }
 
 #canvas:focus {
 	outline: none;
 }
 
-.godot {
-	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-	color: #e0e0e0;
-	background-color: #3b3943;
-	background-image: linear-gradient(to bottom, #403e48, #35333c);
-	border: 1px solid #45434e;
-	box-shadow: 0 0 1px 1px #2f2d35;
-}
-
-/* Status display */
-
-#status {
+#status, #status-splash, #status-progress {
 	position: absolute;
 	left: 0;
-	top: 0;
 	right: 0;
+}
+
+#status, #status-splash {
+	top: 0;
 	bottom: 0;
+}
+
+#status {
+	background-color: #fae8e0;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* don't consume click events - make children visible explicitly */
 	visibility: hidden;
 }
 
-#status-progress {
-	width: 366px;
-	height: 7px;
-	background-color: #38363A;
-	border: 1px solid #444246;
-	padding: 1px;
-	box-shadow: 0 0 2px 1px #1B1C22;
-	border-radius: 2px;
-	visibility: visible;
+#status-splash {
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
 }
 
-@media only screen and (orientation:portrait) {
-	#status-progress {
-		width: 61.8%;
-	}
+#status-splash.show-image--false {
+	display: none;
 }
 
-#status-progress-inner {
+#status-splash.fullsize--true {
 	height: 100%;
-	width: 0;
-	box-sizing: border-box;
-	transition: width 0.5s linear;
-	background-color: #202020;
-	border: 1px solid #222223;
-	box-shadow: 0 0 1px 1px #27282E;
-	border-radius: 3px;
+	width: 100%;
+	object-fit: contain;
 }
 
-#status-indeterminate {
-	height: 42px;
-	visibility: visible;
-	position: relative;
+#status-splash.use-filter--false {
+	image-rendering: pixelated;
 }
 
-#status-indeterminate > div {
-	width: 4.5px;
-	height: 0;
-	border-style: solid;
-	border-width: 9px 3px 0 3px;
-	border-color: #2b2b2b transparent transparent transparent;
-	transform-origin: center 21px;
-	position: absolute;
+#status-progress, #status-notice {
+	display: none;
 }
 
-#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
+#status-progress {
+	bottom: 10%;
+	width: 50%;
+	margin: 0 auto;
+}
 
 #status-notice {
-	margin: 0 100px;
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
 	line-height: 1.3;
-	visibility: visible;
-	padding: 4px 6px;
-	visibility: visible;
+	margin: 0 2rem;
+	overflow: hidden;
+	padding: 1rem;
+	text-align: center;
+	z-index: 1;
 }
 		</style>
-		<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
-<link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
 	</head>
 	<body>
-		<canvas id="canvas">
-			HTML5 canvas appears to be unsupported in the current browser.<br >
-			Please try updating or use a different browser.
+		<script>
+(function () {
+	"use strict";
+
+	if (window.EBS && window.EBS.installed) {
+		return;
+	}
+
+	var FADE_MS = 400;
+	// How long a shell that loads the engine late gets before the overlay gives up
+	// and uncovers what is underneath.
+	var GRACE_MS = 3000;
+	var ROOT_ID = "ebs";
+	var DONE_CLASS = "is-done";
+	var SMOOTH_CLASS = "is-smooth";
+	var MAX_TICK_MS = 100;
+	var SETTLE_EPSILON = 0.0005;
+	var CLOSE_90_TAUS = Math.log(10);
+
+	var progressHandlers = [];
+	var doneHandlers = [];
+	var root = null;
+	var finished = false;
+	var dismissed = false;
+	var sawEngine = false;
+	var ratio = 0;
+	var current = 0;
+	var total = 0;
+	var displayed = 0;
+	var animating = false;
+	var lastTick = 0;
+	var pendingDismiss = false;
+	var failedFinish = false;
+	var floorRatio = 0;
+	var dismissCeiling = 0;
+
+	function findRoot() {
+		if (root === null) {
+			root = document.getElementById(ROOT_ID);
+		}
+
+		return root;
+	}
+
+	function call(handler, args) {
+		try {
+			handler.apply(null, args);
+		} catch (error) {
+			console.error("EBS: handler failed.", error);
+		}
+	}
+
+	function smoothingMs() {
+		var value = Number(api.params && api.params.progress_smoothing_ms);
+
+		return isFinite(value) && value > 0 ? value : 0;
+	}
+
+	function awaitsFull() {
+		return !!(api.params && api.params.hide_awaits_full_progress === true);
+	}
+
+	function render(value) {
+		var node = findRoot();
+
+		if (node) {
+			node.style.setProperty("--ebs-progress", String(value));
+			node.style.setProperty("--ebs-progress-percent", (value * 100).toFixed(2) + "%");
+		}
+	}
+
+	function targetRatio() {
+		var value = Math.max(ratio, floorRatio);
+
+		return pendingDismiss ? Math.min(value, dismissCeiling) : value;
+	}
+
+	function tick(now) {
+		if (dismissed) {
+			animating = false;
+			return;
+		}
+
+		var target = targetRatio();
+		var ms = smoothingMs();
+		var dt = Math.min(Math.max(now - lastTick, 0), MAX_TICK_MS);
+
+		lastTick = now;
+
+		if (target <= displayed || !(ms > 0)) {
+			displayed = target;
+		} else {
+			var gap = target - displayed;
+			var step = gap * (1 - Math.exp(-dt * CLOSE_90_TAUS / ms));
+
+			if (pendingDismiss) {
+				step = Math.max(step, dt / ms);
+			}
+
+			displayed = gap - step < SETTLE_EPSILON ? target : displayed + step;
+		}
+
+		render(displayed);
+
+		if (displayed < target) {
+			window.requestAnimationFrame(tick);
+			return;
+		}
+
+		animating = false;
+
+		if (pendingDismiss) {
+			dismissNow();
+		}
+	}
+
+	function animate() {
+		var node = findRoot();
+
+		if (node) {
+			node.classList.add(SMOOTH_CLASS);
+		}
+
+		if (animating) {
+			return;
+		}
+
+		animating = true;
+		lastTick = window.performance.now();
+		window.requestAnimationFrame(tick);
+	}
+
+	function setProgress(loaded, size) {
+		current = loaded;
+		total = size;
+
+		if (size > 0) {
+			ratio = Math.max(0, Math.min(1, loaded / size));
+		}
+
+		if (smoothingMs() > 0 && !failedFinish) {
+			animate();
+		} else {
+			displayed = ratio;
+			render(ratio);
+		}
+
+		for (var i = 0; i < progressHandlers.length; i++) {
+			call(progressHandlers[i], [ratio, current, total]);
+		}
+	}
+
+	function dismiss() {
+		if (dismissed) {
+			return;
+		}
+
+		if (awaitsFull()) {
+			floorRatio = 1;
+		}
+
+		if (displayed < targetRatio()) {
+			if (smoothingMs() > 0) {
+				dismissCeiling = targetRatio();
+				pendingDismiss = true;
+				animate();
+				return;
+			}
+
+			displayed = targetRatio();
+			render(displayed);
+		}
+
+		dismissNow();
+	}
+
+	function dismissNow() {
+		if (dismissed) {
+			return;
+		}
+
+		dismissed = true;
+
+		var node = findRoot();
+
+		if (!node) {
+			return;
+		}
+
+		node.classList.add(DONE_CLASS);
+		window.setTimeout(function () {
+			node.remove();
+			window.removeEventListener("resize", updateArtBottom);
+			root = null;
+			progressHandlers.length = 0;
+			doneHandlers.length = 0;
+		}, FADE_MS);
+	}
+
+	function finish(failed) {
+		if (failed) {
+			failedFinish = true;
+		}
+
+		if (finished) {
+			if (failed) {
+				dismissNow();
+			}
+
+			return;
+		}
+
+		finished = true;
+		setProgress(1, 1);
+
+		for (var i = 0; i < doneHandlers.length; i++) {
+			call(doneHandlers[i], []);
+		}
+
+		if (failed) {
+			dismissNow();
+		} else if (api.mode === "on-engine-load") {
+			dismiss();
+		}
+	}
+
+	var api = {
+		installed: true,
+		params: {},
+		mode: "on-engine-load",
+		onProgress: function (handler) {
+			progressHandlers.push(handler);
+			call(handler, [ratio, current, total]);
+
+			return api;
+		},
+		onDone: function (handler) {
+			if (finished) {
+				call(handler, []);
+			} else {
+				doneHandlers.push(handler);
+			}
+
+			return api;
+		},
+		hide: dismiss,
+		hydrate: hydrateArt,
+		getProgress: function () {
+			return ratio;
+		},
+		isDone: function () {
+			return finished;
+		}
+	};
+
+	window.EBS = api;
+
+	function wrapEngine(engineClass) {
+		if (!engineClass || engineClass.ebsWrapped || !engineClass.prototype) {
+			return;
+		}
+
+		engineClass.ebsWrapped = true;
+
+		["startGame", "start"].forEach(function (name) {
+			var original = engineClass.prototype[name];
+
+			if (typeof original !== "function") {
+				return;
+			}
+
+			sawEngine = true;
+
+			engineClass.prototype[name] = function (override) {
+				var config = override || {};
+				var inner = config["onProgress"];
+
+				config["onProgress"] = function (loaded, size) {
+					setProgress(loaded, size);
+
+					if (typeof inner === "function") {
+						inner(loaded, size);
+					}
+				};
+
+				var result = original.call(this, config);
+
+				if (result && typeof result.then === "function") {
+					result.then(function () {
+						finish(false);
+					}, function () {
+						finish(true);
+					});
+				} else {
+					finish(false);
+				}
+
+				return result;
+			};
+		});
+	}
+
+	if (typeof window.Engine === "function") {
+		wrapEngine(window.Engine);
+	} else {
+		try {
+			var captured;
+
+			Object.defineProperty(window, "Engine", {
+				configurable: true,
+				enumerable: true,
+				get: function () {
+					return captured;
+				},
+				set: function (value) {
+					captured = value;
+					wrapEngine(value);
+				}
+			});
+		} catch (error) {
+			console.warn("EBS: could not hook Engine, falling back to the shell status.", error);
+		}
+	}
+
+	// Rendered bottom edge of the artwork, consumed by the template's
+	// "below" placement for cover/contain.
+	function updateArtBottom() {
+		var node = findRoot();
+
+		if (!node) {
+			return;
+		}
+
+		var bottom;
+
+		if (node.classList.contains("fit-cover")) {
+			bottom = node.clientHeight;
+		} else if (node.classList.contains("fit-contain")) {
+			var art = node.querySelector("img");
+
+			if (!art || !art.naturalWidth || !art.naturalHeight) {
+				return;
+			}
+
+			var scale = Math.min(node.clientWidth / art.naturalWidth, node.clientHeight / art.naturalHeight);
+			bottom = (node.clientHeight + art.naturalHeight * scale) / 2;
+		} else {
+			return;
+		}
+
+		node.style.setProperty("--ebs-art-bottom", bottom.toFixed(1) + "px");
+	}
+
+	function hydrateArt() {
+		var node = findRoot();
+		var art = node && node.querySelector("[data-src]");
+
+		if (!art) {
+			return;
+		}
+
+		var src = art.getAttribute("data-src");
+		art.removeAttribute("data-src");
+
+		if (!src) {
+			art.remove();
+			return;
+		}
+
+		art.addEventListener("load", updateArtBottom);
+		art.setAttribute("src", src);
+		window.addEventListener("resize", updateArtBottom);
+		updateArtBottom();
+	}
+
+	function observeShell() {
+		hydrateArt();
+
+		var progress = document.getElementById("status-progress");
+
+		if (progress && !sawEngine) {
+			var sync = function () {
+				var max = Number(progress.max) || 0;
+				var value = Number(progress.value) || 0;
+
+				if (max > 0) {
+					setProgress(value, max);
+				}
+			};
+
+			new MutationObserver(sync).observe(progress, {
+				attributes: true,
+				attributeFilter: ["value", "max"]
+			});
+			sync();
+		}
+
+		var notice = document.getElementById("status-notice");
+
+		if (notice) {
+			var checkNotice = function () {
+				if (notice.style.display === "block") {
+					finish(true);
+				}
+			};
+
+			new MutationObserver(checkNotice).observe(notice, {
+				attributes: true,
+				attributeFilter: ["style"]
+			});
+
+			checkNotice();
+		}
+
+		var status = document.getElementById("status");
+
+		if (status && status.parentNode) {
+			new MutationObserver(function (records, observer) {
+				if (!document.getElementById("status")) {
+					observer.disconnect();
+					finish(false);
+				}
+			}).observe(status.parentNode, { childList: true });
+		} else {
+			window.setTimeout(function () {
+				if (total === 0) {
+					finish(true);
+				}
+			}, GRACE_MS);
+		}
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", observeShell);
+	} else {
+		observeShell();
+	}
+})();
+</script>
+<script>window.EBS.params=JSON.parse("{\"background_color\":\"#5F5F5F\",\"fit\":\"centered\",\"hide_awaits_full_progress\":false,\"progress_color\":\"#FF244A\",\"progress_height\":\"10px\",\"progress_hidden\":false,\"progress_margin\":\"12px\",\"progress_placement\":\"below\",\"progress_radius\":\"999px\",\"progress_smoothing_ms\":600,\"progress_width\":\"min(50vw, 360px)\",\"track_color\":\"rgba(255, 255, 255, 0.9)\"}");window.EBS.mode="after-first-frame-drawn";</script>
+<div id="ebs" class="fit-centered">
+	<img id="ebs-art" alt="" data-src="" onerror="this.remove()">
+	<div id="ebs-track" class="pos-below hidden-false"><div id="ebs-fill"></div></div>
+</div>
+<style>
+	#ebs {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		--ebs-gap: 32px;
+		gap: var(--ebs-gap);
+		background: #5F5F5F;
+		opacity: 1;
+		transition: opacity 0.35s ease-out;
+	}
+
+	#ebs.is-done {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	#ebs-art {
+		width: 256px;
+		max-width: 60vw;
+		height: auto;
+		max-height: 50vh;
+		object-fit: contain;
+	}
+
+	#ebs.fit-cover #ebs-art,
+	#ebs.fit-contain #ebs-art {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		max-height: none;
+	}
+
+	#ebs.fit-cover #ebs-art {
+		object-fit: cover;
+	}
+
+	#ebs.fit-contain #ebs-art {
+		object-fit: contain;
+	}
+
+	#ebs-track {
+		position: relative;
+		width: min(50vw, 360px);
+		height: 10px;
+		border-radius: 999px;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.9);
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 12px rgba(0, 0, 0, 0.3);
+	}
+
+	#ebs-track.hidden-true {
+		display: none;
+	}
+
+	#ebs-track.pos-top,
+	#ebs-track.pos-center,
+	#ebs-track.pos-bottom {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	#ebs-track.pos-top {
+		top: 12px;
+	}
+
+	#ebs-track.pos-center {
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	#ebs-track.pos-bottom {
+		bottom: 12px;
+	}
+
+	/* runtime.js measures the rendered art bottom into --ebs-art-bottom;
+	   clamped to the page bottom when there is no room under the image. */
+	#ebs.fit-cover #ebs-track.pos-below,
+	#ebs.fit-contain #ebs-track.pos-below {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: min(calc(var(--ebs-art-bottom, 100%) + var(--ebs-gap)), calc(100% - 12px - 10px));
+	}
+
+	#ebs-fill {
+		width: var(--ebs-progress-percent, 0%);
+		height: 100%;
+		background: #FF244A;
+		transition: width 0.2s linear;
+	}
+
+	#ebs.is-smooth #ebs-fill {
+		transition: none;
+	}
+</style>
+
+<canvas id="canvas">
+			Your browser does not support the canvas tag.
 		</canvas>
+
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
+
 		<div id="status">
-			<div id="status-progress" style="display: none;" oncontextmenu="event.preventDefault();">
-				<div id ="status-progress-inner"></div>
-			</div>
-			<div id="status-indeterminate" style="display: none;" oncontextmenu="event.preventDefault();">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div id="status-notice" class="godot" style="display: none;"></div>
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
+			<progress id="status-progress"></progress>
+			<div id="status-notice"></div>
 		</div>
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":20906880,"index.wasm":35708238},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":16100108,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
-	const INDETERMINATE_STATUS_STEP_MS = 100;
+	const statusOverlay = document.getElementById('status');
 	const statusProgress = document.getElementById('status-progress');
-	const statusProgressInner = document.getElementById('status-progress-inner');
-	const statusIndeterminate = document.getElementById('status-indeterminate');
 	const statusNotice = document.getElementById('status-notice');
 
 	let initializing = true;
-	let statusMode = 'hidden';
-
-	let animationCallbacks = [];
-	function animate(time) {
-		animationCallbacks.forEach((callback) => callback(time));
-		requestAnimationFrame(animate);
-	}
-	requestAnimationFrame(animate);
-
-	function animateStatusIndeterminate(ms) {
-		const i = Math.floor((ms / INDETERMINATE_STATUS_STEP_MS) % 8);
-		if (statusIndeterminate.children[i].style.borderTopColor === '') {
-			Array.prototype.slice.call(statusIndeterminate.children).forEach((child) => {
-				child.style.borderTopColor = '';
-			});
-			statusIndeterminate.children[i].style.borderTopColor = '#dfdfdf';
-		}
-	}
+	let statusMode = '';
 
 	function setStatusMode(mode) {
 		if (statusMode === mode || !initializing) {
 			return;
 		}
-		[statusProgress, statusIndeterminate, statusNotice].forEach((elem) => {
-			elem.style.display = 'none';
-		});
-		animationCallbacks = animationCallbacks.filter(function (value) {
-			return (value !== animateStatusIndeterminate);
-		});
-		switch (mode) {
-		case 'progress':
-			statusProgress.style.display = 'block';
-			break;
-		case 'indeterminate':
-			statusIndeterminate.style.display = 'block';
-			animationCallbacks.push(animateStatusIndeterminate);
-			break;
-		case 'notice':
-			statusNotice.style.display = 'block';
-			break;
-		case 'hidden':
-			break;
-		default:
-			throw new Error('Invalid status mode');
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			return;
 		}
+		statusOverlay.style.visibility = 'visible';
+		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
 		statusMode = mode;
 	}
 
@@ -208,37 +698,67 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 
 	function displayFailureNotice(err) {
-		const msg = err.message || err;
-		console.error(msg);
-		setStatusNotice(msg);
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('An unknown error occurred.');
+		}
 		setStatusMode('notice');
 		initializing = false;
 	}
 
-	const missing = Engine.getMissingFeatures();
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
+
 	if (missing.length !== 0) {
-		const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
-		displayFailureNotice(missingMsg + missing.join('\n'));
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
+			}
+			// There's a chance that installing the service worker would fix the issue
+			Promise.race([
+				serviceWorkerRegistrationPromise.then((registration) => {
+					if (registration != null) {
+						return Promise.reject(new Error('Service worker already exists.'));
+					}
+					return registration;
+				}).then(() => engine.installServiceWorker()),
+				// For some reason, `getRegistration()` can stall
+				new Promise((resolve) => {
+					setTimeout(() => resolve(), 2000);
+				}),
+			]).then(() => {
+				// Reload if there was no error.
+				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
+			});
+		} else {
+			// Display the message as usual
+			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+			displayFailureNotice(missingMsg + missing.join('\n'));
+		}
 	} else {
-		setStatusMode('indeterminate');
+		setStatusMode('progress');
 		engine.startGame({
 			'onProgress': function (current, total) {
-				if (total > 0) {
-					statusProgressInner.style.width = `${(current / total) * 100}%`;
-					setStatusMode('progress');
-					if (current === total) {
-						// wait for progress bar animation
-						setTimeout(() => {
-							setStatusMode('indeterminate');
-						}, 500);
-					}
+				if (current > 0 && total > 0) {
+					statusProgress.value = current;
+					statusProgress.max = total;
 				} else {
-					setStatusMode('indeterminate');
+					statusProgress.removeAttribute('value');
+					statusProgress.removeAttribute('max');
 				}
 			},
 		}).then(() => {
 			setStatusMode('hidden');
-			initializing = false;
 		}, displayFailureNotice);
 	}
 }());
