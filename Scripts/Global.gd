@@ -6,7 +6,24 @@ signal game_saved
 
 
 func _ready() -> void:
-	load_game()
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval("""
+			(function() {
+				if (document.getElementById('iosHapticToggle')) return;
+				
+				const hapticInput = document.createElement('input');
+				hapticInput.type = 'checkbox';
+				hapticInput.id = 'iosHapticToggle';
+				hapticInput.style.display = 'none';
+				hapticInput.setAttribute('switch', '');
+				document.body.appendChild(hapticInput);
+
+				window.triggerIOSHaptic = function() {
+					hapticInput.checked = !hapticInput.checked;
+					hapticInput.dispatchEvent(new Event('change'));
+				};
+			})();
+		""")
 
 const lboard_name: String = "clicker_game_lboard"
 

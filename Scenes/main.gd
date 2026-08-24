@@ -57,6 +57,9 @@ func on_loaded(data: Dictionary) -> void:
 func game_saved():
 	save_game_label.text = "Game Saved!"
 
+func play_haptic() -> void:
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval("window.triggerIOSHaptic();")
 
 func _on_click_button_pressed() -> void:
 	Global.update_clicks.emit(int(1 * Global.money_multiplier))
@@ -70,6 +73,8 @@ func _on_click_button_pressed() -> void:
 	prestige_progress_bar.value = Global.prestige_progress
 	
 	Input.vibrate_handheld(3, 50)
+	
+	play_haptic()
 	
 	print("Prestige Weight: ", Global.prestige_weight)
 	print("Prestige Progress: ", Global.prestige_progress)
