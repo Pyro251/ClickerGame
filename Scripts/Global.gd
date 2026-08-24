@@ -11,16 +11,26 @@ func _ready() -> void:
 			(function() {
 				if (document.getElementById('iosHapticToggle')) return;
 				
-				const hapticInput = document.createElement('input');
-				hapticInput.type = 'checkbox';
-				hapticInput.id = 'iosHapticToggle';
-				hapticInput.style.display = 'none';
-				hapticInput.setAttribute('switch', '');
-				document.body.appendChild(hapticInput);
+				const haptic = document.createElement('input');
+				haptic.type = 'checkbox';
+				haptic.id = 'iosHapticToggle';
+				haptic.setAttribute('switch', '');
+				haptic.style.position = 'fixed';
+				haptic.style.opacity = '0';
+				haptic.style.pointerEvents = 'none';
+				haptic.style.top = '-100px';
+				document.body.appendChild(haptic);
 
 				window.triggerIOSHaptic = function() {
-					hapticInput.checked = !hapticInput.checked;
-					hapticInput.dispatchEvent(new Event('change'));
+					// Fallback for Android/Chrome
+					if (navigator.vibrate) {
+						navigator.vibrate(15);
+					}
+					// iOS WebKit Switch trigger
+					const el = document.getElementById('iosHapticToggle');
+					if (el) {
+						el.click();
+					}
 				};
 			})();
 		""")

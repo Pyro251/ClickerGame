@@ -14,6 +14,16 @@ func _ready() -> void:
 func _init_pivot():
 	pivot_offset = size/2.0
 
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		_fire_haptic()
+	elif event is InputEventScreenTouch and event.pressed:
+		_fire_haptic()
+
+func _fire_haptic() -> void:
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval("window.triggerIOSHaptic();")
+
 func _button_enter():
 	create_tween().tween_property(self, "scale", hover_scale, 0.1).set_trans(Tween.TRANS_SINE)
 
