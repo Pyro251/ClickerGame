@@ -15,6 +15,14 @@ const MONEY_COUNTER_PARTICLE = preload("res://Scenes/money_counter_particle.tscn
 
 
 func _ready() -> void:
+	
+	if Talo.current_player.get_prop("total_clicks") == null:
+		await Talo.current_player.set_prop("total_clicks", "0")
+	if Talo.current_player.get_prop("money_multiplier") == null:
+		await Talo.current_player.set_prop("money_multiplier", "0")
+	if Talo.current_player.get_prop("prestige_money_needed") == null:
+		await Talo.current_player.set_prop("prestige_money_needed", "0")
+	
 	Global.update_clicks.connect(update_clicks)
 	
 	Global.game_saved.connect(game_saved)
@@ -32,13 +40,21 @@ func _ready() -> void:
 	player_name_label.text = Global.username
 	prestige_label.text = str("Prestige Points: ", int(Global.new_money_multiplier - Global.money_multiplier))
 	
+	if Global.total_clicks <= Global.prestige_money_needed:
+		prestige_label.text = str("Money until next prestige: ", Global.prestige_money_needed - Global.total_clicks)
+	else:
+		prestige_label.text = "You can prestige!"
+	
 	prestige_progress_bar.max_value = Global.prestige_money_needed
 	prestige_progress_bar.value = Global.total_clicks
+	
+	
+	print("Money multiplier = ", Global.money_multiplier)
 
 
 
 func _process(delta: float) -> void:
-	clicks_label.text = str(Global.total_clicks)
+	clicks_label.text = str(Global.total_clicks, "$")
 
 
 func update_clicks(clicks: int):

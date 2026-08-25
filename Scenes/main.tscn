@@ -329,7 +329,7 @@ anchor_bottom = 0.99000007
 offset_top = -0.16003418
 offset_right = -0.16003418
 offset_bottom = -0.60009766
-text = "v1.0.0"
+text = "v1.0.1"
 label_settings = SubResource("LabelSettings_ynf5e")
 horizontal_alignment = 1
 

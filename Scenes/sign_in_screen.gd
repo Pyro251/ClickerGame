@@ -7,9 +7,8 @@ var can_find_session: bool = true
 
 
 func _on_submit_button_pressed() -> void:
-	#Talo.player_auth.register(Global.username, Global.password)
-	
 	var res = await Talo.player_auth.register(Global.username, Global.password)
+	
 	if res != OK:
 		validation_label.show()
 		match Talo.player_auth.last_error.get_code():
@@ -21,9 +20,10 @@ func _on_submit_button_pressed() -> void:
 				validation_label.text = "New password matches current one."
 			_:
 				validation_label.text = Talo.player_auth.last_error.get_string()
-	
-	if !TaloAuthError:
-		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+		return
+
+	# Talo automatically authenticates the session on successful registration
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
 func _on_username_line_edit_text_changed(new_text: String) -> void:
