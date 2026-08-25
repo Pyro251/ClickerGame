@@ -5,42 +5,6 @@ signal save_game_signal
 signal game_saved
 
 
-func _ready() -> void:
-	if OS.has_feature("web"):
-		JavaScriptBridge.eval("""
-			(function() {
-				if (document.getElementById('iosHapticToggle')) return;
-				
-				// 1. Create the hidden checkbox switch
-				const input = document.createElement('input');
-				input.type = 'checkbox';
-				input.id = 'iosHapticToggle';
-				input.setAttribute('switch', '');
-				input.style.display = 'none';
-				
-				// 2. Create the linked label (Crucial for iOS Haptics)
-				const label = document.createElement('label');
-				label.id = 'iosHapticLabel';
-				label.htmlFor = 'iosHapticToggle';
-				label.style.display = 'none';
-
-				document.body.appendChild(input);
-				document.body.appendChild(label);
-
-				window.triggerIOSHaptic = function() {
-					// Fallback for Android (Standard Vibration API)
-					if (navigator.vibrate) {
-						navigator.vibrate(15);
-					}
-					// iOS WebKit trick: Click the linked LABEL, not the input
-					const lbl = document.getElementById('iosHapticLabel');
-					if (lbl) {
-						lbl.click();
-					}
-				};
-			})();
-		""")
-
 const lboard_name: String = "clicker_game_lboard"
 
 
@@ -57,7 +21,6 @@ var username: String
 var password: String
 
 var save_name: String = "save_name"
-
 
 
 func save_game():
