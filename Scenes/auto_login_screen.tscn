@@ -93,3 +93,5 @@ theme_override_styles/pressed = ExtResource("4_ahx1q")
 theme_override_styles/hover = ExtResource("5_lxx4i")
 text = "Switch Accounts"
 script = ExtResource("6_dt52p")
+
+[connection signal="pressed" from="LogInButton" to="." method="_on_log_in_button_pressed"]

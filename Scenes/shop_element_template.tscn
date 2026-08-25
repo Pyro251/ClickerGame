@@ -53,9 +53,10 @@ script = ExtResource("2_sgep8")
 
 [node name="TitleLabel" type="Label" parent="." unique_id=678429146]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 23.0
+anchor_bottom = 0.13700001
+offset_bottom = -18.100002
 grow_horizontal = 2
 text = "Title"
 label_settings = SubResource("LabelSettings_lw0in")
@@ -74,15 +75,14 @@ horizontal_alignment = 1
 
 [node name="DescriptionRichTextLabel" type="RichTextLabel" parent="." unique_id=332254037]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.75
-offset_top = -65.25
-offset_right = 155.75
-offset_bottom = 117.5
+anchors_preset = -1
+anchor_top = 0.282
+anchor_right = 1.0
+anchor_bottom = 0.892
+offset_left = -5.75
+offset_top = 0.15000153
+offset_right = 5.75
+offset_bottom = -0.1000061
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -93,4 +93,17 @@ theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
 text = "Description"
+horizontal_alignment = 1
+
+[node name="OwnedAmountLabel" type="Label" parent="." unique_id=1076068183]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.85300004
+anchor_right = 1.0
+anchor_bottom = 0.99000007
+offset_top = 0.099990845
+offset_bottom = -3.0517578e-05
+grow_horizontal = 2
+text = "Owned: ##"
+label_settings = SubResource("LabelSettings_lw0in")
 horizontal_alignment = 1

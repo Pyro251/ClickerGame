@@ -110,23 +110,9 @@ columns = 2
 
 [node name="ShopElementTemplate2" parent="ScrollContainer/GridContainer" unique_id=86724086 instance=ExtResource("7_52qyv")]
 layout_mode = 2
-
-[node name="ShopElementTemplate" parent="ScrollContainer/GridContainer" unique_id=480349000 instance=ExtResource("7_52qyv")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ShopElementTemplate3" parent="ScrollContainer/GridContainer" unique_id=803462272 instance=ExtResource("7_52qyv")]
-layout_mode = 2
-
-[node name="ShopElementTemplate4" parent="ScrollContainer/GridContainer" unique_id=1977957790 instance=ExtResource("7_52qyv")]
-layout_mode = 2
-
-[node name="ShopElementTemplate5" parent="ScrollContainer/GridContainer" unique_id=369700210 instance=ExtResource("7_52qyv")]
-layout_mode = 2
-
-[node name="ShopElementTemplate6" parent="ScrollContainer/GridContainer" unique_id=1983762371 instance=ExtResource("7_52qyv")]
-layout_mode = 2
+cost = 200
+cps = 2
+title = "Tiny Clicker"
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
 layout_mode = 1
@@ -171,5 +157,6 @@ theme_override_styles/pressed = ExtResource("5_52qyv")
 theme_override_styles/hover = ExtResource("6_j7idd")
 text = "Prestige"
 script = ExtResource("8_j7idd")
+use_small_button_sound = true
 
 [connection signal="pressed" from="PrestigeButton" to="." method="_on_prestige_button_pressed"]

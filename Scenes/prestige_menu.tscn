@@ -209,5 +209,6 @@ theme_override_styles/pressed = ExtResource("4_naa1u")
 theme_override_styles/hover = ExtResource("5_hektg")
 text = "Confirm?"
 script = ExtResource("7_hektg")
+use_big_button_sound = true
 
 [connection signal="pressed" from="BottomBackground/ConfirmButton" to="." method="_on_confirm_button_pressed"]

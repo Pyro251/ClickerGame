@@ -22,15 +22,23 @@ func _ready() -> void:
 		await Talo.current_player.set_prop("money_multiplier", "0")
 	if Talo.current_player.get_prop("prestige_money_needed") == null:
 		await Talo.current_player.set_prop("prestige_money_needed", "0")
+	if Talo.current_player.get_prop("clicks_per_second") == null:
+		await Talo.current_player.set_prop("clicks_per_second", "0")
+	if Talo.current_player.get_prop("owned_items") == null:
+		await Talo.current_player.set_prop("owned_items", "")
 	
 	Global.update_clicks.connect(update_clicks)
 	
 	Global.game_saved.connect(game_saved)
 	
+	
 	Global.username = Talo.current_alias.identifier
 	Global.total_clicks = int(Talo.current_player.get_prop("total_clicks"))
 	Global.money_multiplier = int(Talo.current_player.get_prop("money_multiplier"))
+	Global.clicks_per_second = int(Talo.current_player.get_prop("clicks_per_second"))
 	
+	var raw_string: String = Talo.current_player.get_prop("owned_items")
+	Global.owned_items = JSON.parse_string(raw_string)
 	
 	#Global.prestige_weight = (log(Global.total_clicks) / log(10)) / (Global.money_multiplier / 8)
 	#Global.prestige_progress = int((Global.prestige_weight - floor(Global.prestige_weight)) * 100)
@@ -62,6 +70,8 @@ func update_clicks(clicks: int):
 	new_money_counter.clicks = clicks
 	new_money_counter.global_position = $TotalClicksLabel/ParticleSpawnMarker.global_position
 	add_child(new_money_counter)
+	
+	prestige_progress_bar.value = Global.total_clicks
 
 
 func register_fields() -> void:

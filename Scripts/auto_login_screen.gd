@@ -19,3 +19,7 @@ func session_not_found():
 
 func player_identified(_player: TaloPlayer):
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+
+func _on_log_in_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/sign_in_screen.tscn")
