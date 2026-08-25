@@ -19,11 +19,10 @@ func _ready() -> void:
 func _init_pivot():
 	pivot_offset = size/2.0
 
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		_fire_haptic()
-	elif event is InputEventScreenTouch and event.pressed:
-		_fire_haptic()
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch and event.pressed:
+		if OS.has_feature("web"):
+			JavaScriptBridge.eval("window.triggerIOSHaptic();")
 
 func _fire_haptic() -> void:
 	if OS.has_feature("web"):
@@ -40,7 +39,6 @@ func _button_pressed():
 	button_press_tween.tween_property(self, "scale", pressed_scale, 0.06).set_trans(Tween.TRANS_SINE)
 	button_press_tween.tween_property(self, "scale", hover_scale, 0.12).set_trans(Tween.TRANS_SINE)
 	
-	_fire_haptic()
 	
 	if use_big_button_sound:
 		var new_big_button_sound = BIG_BUTTON_SOUND.instantiate()

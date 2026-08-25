@@ -11,25 +11,31 @@ func _ready() -> void:
 			(function() {
 				if (document.getElementById('iosHapticToggle')) return;
 				
-				const haptic = document.createElement('input');
-				haptic.type = 'checkbox';
-				haptic.id = 'iosHapticToggle';
-				haptic.setAttribute('switch', '');
-				haptic.style.position = 'fixed';
-				haptic.style.opacity = '0';
-				haptic.style.pointerEvents = 'none';
-				haptic.style.top = '-100px';
-				document.body.appendChild(haptic);
+				// 1. Create the hidden checkbox switch
+				const input = document.createElement('input');
+				input.type = 'checkbox';
+				input.id = 'iosHapticToggle';
+				input.setAttribute('switch', '');
+				input.style.display = 'none';
+				
+				// 2. Create the linked label (Crucial for iOS Haptics)
+				const label = document.createElement('label');
+				label.id = 'iosHapticLabel';
+				label.htmlFor = 'iosHapticToggle';
+				label.style.display = 'none';
+
+				document.body.appendChild(input);
+				document.body.appendChild(label);
 
 				window.triggerIOSHaptic = function() {
-					// Fallback for Android/Chrome
+					// Fallback for Android (Standard Vibration API)
 					if (navigator.vibrate) {
 						navigator.vibrate(15);
 					}
-					// iOS WebKit Switch trigger
-					const el = document.getElementById('iosHapticToggle');
-					if (el) {
-						el.click();
+					// iOS WebKit trick: Click the linked LABEL, not the input
+					const lbl = document.getElementById('iosHapticLabel');
+					if (lbl) {
+						lbl.click();
 					}
 				};
 			})();
