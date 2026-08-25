@@ -2,6 +2,7 @@ extends Control
 
 
 @onready var validation_label: Label = $VBoxContainer/ValidationLabel
+@onready var typing_sounds: AudioStreamPlayer = $TypingSounds
 
 var can_find_session: bool = true
 
@@ -28,10 +29,12 @@ func _on_submit_button_pressed() -> void:
 
 func _on_username_line_edit_text_changed(new_text: String) -> void:
 	Global.username = new_text
+	typing_sounds.play()
 
 
 func _on_password_line_edit_text_changed(new_text: String) -> void:
 	Global.password = new_text
+	typing_sounds.play()
 
 
 func _on_log_in_button_pressed() -> void:

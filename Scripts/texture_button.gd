@@ -1,8 +1,13 @@
 extends TextureButton
 
+const BIG_BUTTON_SOUND = preload("res://Scenes/big_button_sound.tscn")
+const SMALL_BUTTON_SOUND = preload("res://Scenes/small_button_sound.tscn")
+
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)
 @export var pressed_scale: Vector2 = Vector2(0.9, 0.9)
 
+@export var use_big_button_sound: bool = false
+@export var use_small_button_sound: bool = false
 
 func _ready() -> void:
 	mouse_entered.connect(_button_enter)
@@ -24,3 +29,12 @@ func _button_pressed():
 	var button_press_tween: Tween = create_tween()
 	button_press_tween.tween_property(self, "scale", pressed_scale, 0.06).set_trans(Tween.TRANS_SINE)
 	button_press_tween.tween_property(self, "scale", hover_scale, 0.12).set_trans(Tween.TRANS_SINE)
+	
+	if use_big_button_sound:
+		var new_big_button_sound = BIG_BUTTON_SOUND.instantiate()
+		#new_big_button_sound.play()
+		add_child(new_big_button_sound)
+	elif use_small_button_sound:
+		var new_small_button_sound = SMALL_BUTTON_SOUND.instantiate()
+		#new_small_button_sound.play()
+		add_child(new_small_button_sound)

@@ -164,6 +164,7 @@ texture_hover = ExtResource("3_kry3j")
 texture_disabled = ExtResource("3_kry3j")
 texture_focused = ExtResource("3_kry3j")
 script = ExtResource("4_6bp64")
+use_small_button_sound = true
 
 [node name="TotalClicksLabel" type="Label" parent="." unique_id=2127403009]
 layout_mode = 1
@@ -245,6 +246,7 @@ shortcut = SubResource("Shortcut_g3au0")
 shortcut_feedback = false
 text = "Click Here"
 script = ExtResource("4_21xkr")
+use_big_button_sound = true
 
 [node name="SaveGameLabel" type="Label" parent="." unique_id=1049556920]
 visible = false
@@ -292,6 +294,7 @@ theme_override_styles/pressed = ExtResource("8_6iyac")
 theme_override_styles/hover = ExtResource("9_fdnlq")
 text = "Shop"
 script = ExtResource("4_21xkr")
+use_small_button_sound = true
 
 [node name="LeaderboardButton" type="Button" parent="VBoxContainer" unique_id=169623816]
 layout_mode = 2
@@ -305,6 +308,7 @@ theme_override_styles/pressed = ExtResource("8_6iyac")
 theme_override_styles/hover = ExtResource("9_fdnlq")
 text = "Leaderboard"
 script = ExtResource("4_21xkr")
+use_small_button_sound = true
 
 [node name="ManuelSaveButton" type="Button" parent="VBoxContainer" unique_id=1276547108]
 layout_mode = 2
@@ -318,6 +322,7 @@ theme_override_styles/pressed = ExtResource("8_6iyac")
 theme_override_styles/hover = ExtResource("9_fdnlq")
 text = "Save"
 script = ExtResource("4_21xkr")
+use_small_button_sound = true
 
 [node name="VersionLabel" type="Label" parent="." unique_id=1311248586]
 layout_mode = 1

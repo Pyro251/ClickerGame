@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://s0kuajdfbr67"]
+
+[ext_resource type="AudioStream" uid="uid://22alt18vnysy" path="res://assets/Sounds/recorded/small_button.ogg" id="1_gluki"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vh2nr"]
+random_pitch = 1.3531609
+streams_count = 1
+stream_0/stream = ExtResource("1_gluki")
+
+[node name="SmallButtonSound" type="AudioStreamPlayer" unique_id=2039719653]
+stream = SubResource("AudioStreamRandomizer_vh2nr")
+volume_db = -2.188
+autoplay = true

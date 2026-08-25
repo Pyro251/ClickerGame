@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://grvnp1g80thg"]
+
+[ext_resource type="AudioStream" uid="uid://g6n7ol5perql" path="res://assets/Sounds/recorded/big_button.ogg" id="1_b6tbh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4r25i"]
+random_pitch = 1.2546196
+streams_count = 1
+stream_0/stream = ExtResource("1_b6tbh")
+
+[node name="BigButtonSound" type="AudioStreamPlayer" unique_id=963460382]
+stream = SubResource("AudioStreamRandomizer_4r25i")
+volume_db = -6.386
+autoplay = true

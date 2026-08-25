@@ -9,6 +9,9 @@
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="5_4aepi"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="6_2hs17"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="7_eodnw"]
+[ext_resource type="AudioStream" uid="uid://tk0uj5ebty08" path="res://assets/Sounds/recorded/typing1.ogg" id="10_eodnw"]
+[ext_resource type="AudioStream" uid="uid://b4ynm03wg8rlg" path="res://assets/Sounds/recorded/Typing2.ogg" id="11_ul3lg"]
+[ext_resource type="AudioStream" uid="uid://oi0y8b5onpin" path="res://assets/Sounds/recorded/Typing3.ogg" id="12_asqsl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
 font_size = 119
@@ -19,6 +22,13 @@ font_size = 53
 [sub_resource type="Theme" id="Theme_s1fef"]
 default_font = ExtResource("3_g3au0")
 default_font_size = 43
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5konv"]
+random_pitch = 1.2081084
+streams_count = 3
+stream_0/stream = ExtResource("10_eodnw")
+stream_1/stream = ExtResource("11_ul3lg")
+stream_2/stream = ExtResource("12_asqsl")
 
 [node name="SignInScreen" type="Control" unique_id=338585810]
 layout_mode = 3
@@ -142,6 +152,7 @@ theme_override_styles/pressed = ExtResource("6_2hs17")
 theme_override_styles/hover = ExtResource("7_eodnw")
 text = "Sign Up"
 script = ExtResource("3_l5pxi")
+use_big_button_sound = true
 
 [node name="LogInButton" type="Button" parent="VBoxContainer" unique_id=2124631813]
 custom_minimum_size = Vector2(0, 100)
@@ -156,6 +167,7 @@ theme_override_styles/pressed = ExtResource("6_2hs17")
 theme_override_styles/hover = ExtResource("7_eodnw")
 text = "Log in"
 script = ExtResource("3_l5pxi")
+use_big_button_sound = true
 
 [node name="DevLogInButton" type="Button" parent="VBoxContainer" unique_id=844176551]
 visible = false
@@ -170,6 +182,10 @@ theme_override_styles/pressed = ExtResource("6_2hs17")
 theme_override_styles/hover = ExtResource("7_eodnw")
 text = "Dev log in"
 script = ExtResource("3_l5pxi")
+use_small_button_sound = true
+
+[node name="TypingSounds" type="AudioStreamPlayer" parent="." unique_id=292711682]
+stream = SubResource("AudioStreamRandomizer_5konv")
 
 [connection signal="text_changed" from="VBoxContainer/UsernameLineEdit" to="." method="_on_username_line_edit_text_changed"]
 [connection signal="text_changed" from="VBoxContainer/PasswordLineEdit" to="." method="_on_password_line_edit_text_changed"]
