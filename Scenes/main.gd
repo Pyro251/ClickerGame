@@ -24,15 +24,16 @@ func _ready() -> void:
 	Global.money_multiplier = int(Talo.current_player.get_prop("money_multiplier"))
 	
 	
-	Global.prestige_weight = (log(Global.total_clicks) / log(10)) / (Global.money_multiplier / 8)
-	Global.prestige_progress = int((Global.prestige_weight - floor(Global.prestige_weight)) * 100)
-	Global.new_money_multiplier = Global.money_multiplier + floor(int(Global.prestige_weight))
+	#Global.prestige_weight = (log(Global.total_clicks) / log(10)) / (Global.money_multiplier / 8)
+	#Global.prestige_progress = int((Global.prestige_weight - floor(Global.prestige_weight)) * 100)
+	Global.new_money_multiplier = Global.money_multiplier + 1
 	
 	
 	player_name_label.text = Global.username
 	prestige_label.text = str("Prestige Points: ", int(Global.new_money_multiplier - Global.money_multiplier))
 	
-	prestige_progress_bar.value = Global.prestige_progress
+	prestige_progress_bar.max_value = Global.prestige_money_needed
+	prestige_progress_bar.value = Global.total_clicks
 
 
 
@@ -43,7 +44,7 @@ func _process(delta: float) -> void:
 func update_clicks(clicks: int):
 	var new_money_counter = MONEY_COUNTER_PARTICLE.instantiate()
 	new_money_counter.clicks = clicks
-	new_money_counter.global_position = $ParticleSpawnMarker.global_position
+	new_money_counter.global_position = $TotalClicksLabel/ParticleSpawnMarker.global_position
 	add_child(new_money_counter)
 
 
@@ -62,17 +63,21 @@ func _on_click_button_pressed() -> void:
 	Global.update_clicks.emit(int(1 * Global.money_multiplier))
 	
 	Global.total_clicks += int(1 * Global.money_multiplier)
-	Global.prestige_weight = (log(Global.total_clicks) / log(10)) / (Global.money_multiplier / 8)
-	Global.prestige_progress = int((Global.prestige_weight - floor(Global.prestige_weight)) * 100)
-	Global.new_money_multiplier = Global.money_multiplier + floor(int(Global.prestige_weight))
+	#Global.prestige_weight = (log(Global.total_clicks) / log(10)) / (Global.money_multiplier / 8)
+	#Global.prestige_progress = int((Global.prestige_weight - floor(Global.prestige_weight)) * 100)
+	#Global.new_money_multiplier = Global.money_multiplier + floor(int(Global.prestige_weight))
 	
-	prestige_label.text = str("Prestige Points: ", int(Global.new_money_multiplier - Global.money_multiplier))
-	prestige_progress_bar.value = Global.prestige_progress
+	if Global.total_clicks <= Global.prestige_money_needed:
+		prestige_label.text = str("Money until next prestige: ", Global.prestige_money_needed - Global.total_clicks)
+	else:
+		prestige_label.text = "You can prestige!"
+	
+	prestige_progress_bar.value = Global.total_clicks
 	
 	Input.vibrate_handheld(3, 50)
 	
 	
-	print("Prestige Weight: ", Global.prestige_weight)
+	#print("Prestige Weight: ", Global.prestige_weight)
 	print("Prestige Progress: ", Global.prestige_progress)
 	print("Total clicks: ", Global.total_clicks)
 
@@ -87,14 +92,17 @@ func _on_manuel_save_button_pressed() -> void:
 
 
 func _on_leaderboard_button_pressed() -> void:
+	Global.save_game()
 	get_tree().change_scene_to_file("res://Scenes/leaderboard.tscn")
 
 
 func _on_settings_button_pressed() -> void:
+	Global.save_game()
 	get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 
 func _on_shop_button_pressed() -> void:
+	Global.save_game()
 	get_tree().change_scene_to_file("res://Scenes/main_shop.tscn")
 
 

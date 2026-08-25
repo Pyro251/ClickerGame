@@ -25,6 +25,25 @@ font = ExtResource("1_kje2o")
 font_size = 56
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_hektg"]
+font = ExtResource("1_kje2o")
+font_size = 56
+font_color = Color(0.44752717, 0.5464799, 0.42766762, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vmb5"]
+font = ExtResource("1_kje2o")
+font_size = 56
+font_color = Color(0.44752717, 0.5464799, 0.42766762, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrgn3"]
+font = ExtResource("1_kje2o")
+font_size = 56
+font_color = Color(0.44752717, 0.5464799, 0.42766762, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
+font_size = 95
+font_color = Color(0.76685053, 0.2101689, 0.23801178, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vmb5"]
 bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
 shadow_size = 56
@@ -78,10 +97,10 @@ vertical_alignment = 1
 
 [node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_imf8p")]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 25.0
-offset_right = 119.0
-offset_bottom = 125.0
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 117.0
+offset_bottom = 117.0
 scene_path = "uid://cl0cf8egqb07u"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1711403554]
@@ -95,6 +114,7 @@ offset_left = -0.040000916
 offset_top = 0.5999756
 offset_right = -0.16003418
 offset_bottom = -0.020080566
+theme_override_constants/separation = 26
 
 [node name="CurrentMoneyTitlelabel" type="Label" parent="VBoxContainer" unique_id=873128393]
 layout_mode = 2
@@ -106,21 +126,21 @@ vertical_alignment = 1
 [node name="CurrentMoneyLabel" type="Label" parent="VBoxContainer" unique_id=1496737160]
 layout_mode = 2
 text = "####"
-label_settings = SubResource("LabelSettings_35swg")
+label_settings = SubResource("LabelSettings_hektg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PreviousMoneyMultiplayerTitleLabel" type="Label" parent="VBoxContainer" unique_id=1628260809]
+[node name="MoneyNeededTitleLabel" type="Label" parent="VBoxContainer" unique_id=1628260809]
 layout_mode = 2
-text = "Previous Money Multiplier:"
+text = "Total Money Needed:"
 label_settings = SubResource("LabelSettings_35swg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PreviousMoneyMultiplierLabel" type="Label" parent="VBoxContainer" unique_id=1314231898]
+[node name="MoneyNeededLabel" type="Label" parent="VBoxContainer" unique_id=1314231898]
 layout_mode = 2
 text = "####"
-label_settings = SubResource("LabelSettings_35swg")
+label_settings = SubResource("LabelSettings_5vmb5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -134,9 +154,26 @@ vertical_alignment = 1
 [node name="NewMoneyMultiplierLabel" type="Label" parent="VBoxContainer" unique_id=1087329570]
 layout_mode = 2
 text = "####"
-label_settings = SubResource("LabelSettings_35swg")
+label_settings = SubResource("LabelSettings_yrgn3")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TooPoorLabel" type="Label" parent="." unique_id=230305793]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.0
+offset_top = -348.0
+offset_right = 203.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Too Poor!"
+label_settings = SubResource("LabelSettings_s1fef")
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=1189239223]
 layout_mode = 1

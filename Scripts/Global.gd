@@ -39,11 +39,11 @@ const lboard_name: String = "clicker_game_lboard"
 
 
 var total_clicks: int = 0
-var money_multiplier: float = 1.0
+var money_multiplier: int = 1
 var new_money_multiplier: int = 0
 #var prestige_weight: float = floor(log(total_clicks) / log(10))
-var prestige_weight: float = 0.0
-var prestige_progress: float = 0.0
+var prestige_money_needed: int = 150
+var prestige_progress: float = 0
 
 
 var player_name: String = str("Player ", str(randi_range(1, 999)))
@@ -59,6 +59,8 @@ func save_game():
 	print("total_clicks prop set to: ", Talo.current_player.get_prop("total_clicks"))
 	
 	await Talo.current_player.set_prop("money_multiplier", str(Global.money_multiplier))
+	
+	await Talo.current_player.set_prop("prestige_money_needed", str(Global.prestige_money_needed))
 	
 	print("game saved")
 	await update_leaderboard()
