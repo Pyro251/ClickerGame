@@ -96,6 +96,17 @@ main_color = Color(0.87205523, 0.7586891, 0.6312347, 1)
 accent_color = Color(0.6613146, 0.6029097, 0.54399717, 1)
 button_color = Color(0.65022117, 0.5289372, 0.45456922, 1)
 
+[node name="ThemeElement3" parent="ScrollContainer/VBoxContainer" unique_id=764148996 instance=ExtResource("3_gpay4")]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+use_small_button_sound = true
+title = "Coastal Sunrise"
+cost = 500
+main_color = Color(0.9764706, 0.84705883, 0.42352942, 1)
+accent_color = Color(0.9607843, 0.54509807, 0.48235294, 1)
+button_color = Color(0.5568628, 0.81960785, 0.9098039, 1)
+
 [node name="BottomBackground" type="Panel" parent="." unique_id=669570321]
 layout_mode = 1
 anchors_preset = -1

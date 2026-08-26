@@ -49,13 +49,13 @@ func _ready() -> void:
 		unequip()
 	
 	
-	#if Global.selected_theme.has(title):
-	if Global.selected_theme[title] == true:
-		equip()
+	if Global.selected_theme.has(title):
+		if Global.selected_theme[title] == true:
+			equip()
+		else:
+			unequip()
 	else:
-		unequip()
-	#else:
-		#Global.selected_theme[title] = false
+		Global.selected_theme[title] = false
 	
 	call_deferred("_init_pivot")
 

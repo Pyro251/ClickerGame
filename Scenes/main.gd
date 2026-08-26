@@ -23,7 +23,7 @@ func _ready() -> void:
 		await Talo.current_player.set_prop("total_clicks", "0")
 	
 	if Talo.current_player.get_prop("money_multiplier") == null:
-		await Talo.current_player.set_prop("money_multiplier", "0")
+		await Talo.current_player.set_prop("money_multiplier", "1.0")
 	
 	if Talo.current_player.get_prop("prestige_money_needed") == null:
 		await Talo.current_player.set_prop("prestige_money_needed", "0")
@@ -110,6 +110,7 @@ func _ready() -> void:
 	Global.refresh_theme.emit()
 	
 	Global.change_labels_font_color(self, Global.button_color)
+	clicks_label.add_theme_color_override("font_color", Color())
 
 
 
