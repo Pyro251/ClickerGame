@@ -4,7 +4,9 @@
 [ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="1_wtgro"]
 [ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_546wo"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="3_fsj2h"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="3_xb4bf"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="4_2lrc5"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="4_vm0a4"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="5_xb4bf"]
 
 [sub_resource type="Theme" id="Theme_fjik7"]
@@ -49,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("3_xb4bf")
 
 [node name="TopBackground" type="Panel" parent="." unique_id=1767923420]
 layout_mode = 1
@@ -61,6 +64,7 @@ offset_right = 70.0
 offset_bottom = 0.31999207
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kr3mb")
+script = ExtResource("4_vm0a4")
 
 [node name="Title" type="Label" parent="." unique_id=331090631]
 layout_mode = 1
@@ -89,6 +93,7 @@ offset_bottom = 0.039916992
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_82o3s")
+script = ExtResource("4_vm0a4")
 
 [node name="MarginContainer" type="MarginContainer" parent="FeedbackPanel" unique_id=1425967063]
 layout_mode = 1

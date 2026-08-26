@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_hu61l"]
 [ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="3_g3au0"]
 [ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="3_l5pxi"]
+[ext_resource type="Texture2D" uid="uid://dw750qjsuug0h" path="res://assets/Backgrounds/magicpattern-saRKnTHBEhU-unsplash.jpg" id="3_ul3lg"]
 [ext_resource type="StyleBox" uid="uid://b5mhi1dmuvhmy" path="res://resources/LineEditStyles/normal.tres" id="4_5konv"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="5_4aepi"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="6_2hs17"]
@@ -49,6 +50,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=17428820]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2003.0
+offset_top = -1249.9999
+offset_right = 23711.285
+offset_bottom = 22027.14
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("3_ul3lg")
+stretch_mode = 1
 
 [node name="GuiTransition" type="Node" parent="." unique_id=1227434303]
 script = ExtResource("2_hu61l")

@@ -4,8 +4,12 @@
 [ext_resource type="Script" uid="uid://bu6qrtmlvcs1e" path="res://Scripts/main_shop.gd" id="1_i5bce"]
 [ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_s3uku"]
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="3_5p6es"]
+[ext_resource type="Texture2D" uid="uid://dj13h785h4nrg" path="res://assets/icons/clker-free-vector-images-paint-29344_1920.png" id="4_3h7jy"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="4_jtugg"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="4_vug5v"]
+[ext_resource type="Script" uid="uid://csxwm1367ohuc" path="res://Scripts/texture_button.gd" id="5_0uhpj"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="5_52qyv"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="5_s5mxc"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="6_j7idd"]
 [ext_resource type="PackedScene" uid="uid://m5ttbtkxvuw" path="res://Scenes/shop_element_template.tscn" id="7_52qyv"]
 [ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="8_j7idd"]
@@ -54,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("4_jtugg")
 
 [node name="TopBackground" type="Panel" parent="." unique_id=1134371830]
 layout_mode = 1
@@ -66,21 +71,44 @@ offset_right = 70.0
 offset_bottom = 0.31999207
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
+script = ExtResource("5_s5mxc")
 
 [node name="MoneyLabel" type="Label" parent="TopBackground" unique_id=1896522447]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -133.0
-offset_top = 64.0
-offset_right = 133.0
-offset_bottom = 170.0
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.335
+anchor_right = 0.65300006
+anchor_bottom = 0.89000005
+offset_left = -0.1960144
+offset_top = 0.01499939
+offset_right = 0.19592285
+offset_bottom = 0.009994507
 grow_horizontal = 2
 text = "####"
 label_settings = SubResource("LabelSettings_i5bce")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ThemeTextureButton" type="TextureButton" parent="." unique_id=1929075021]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96700007
+anchor_top = 0.012
+anchor_right = 0.96700007
+anchor_bottom = 0.012
+offset_left = -82.24005
+offset_top = -0.47999954
+offset_right = -0.24005127
+offset_bottom = 102.691696
+texture_normal = ExtResource("4_3h7jy")
+texture_pressed = ExtResource("4_3h7jy")
+texture_hover = ExtResource("4_3h7jy")
+texture_disabled = ExtResource("4_3h7jy")
+texture_focused = ExtResource("4_3h7jy")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_0uhpj")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1495629705]
 layout_mode = 1
@@ -114,6 +142,18 @@ cost = 200
 cps = 2
 title = "Tiny Clicker"
 
+[node name="ShopElementTemplate3" parent="ScrollContainer/GridContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 1000
+cps = 15
+title = "Small Clicker"
+
+[node name="ShopElementTemplate4" parent="ScrollContainer/GridContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 2500
+cps = 50
+title = "Medium Clicker"
+
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
 layout_mode = 1
 anchors_preset = -1
@@ -126,6 +166,7 @@ offset_right = 70.0
 offset_bottom = 18.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
+script = ExtResource("5_s5mxc")
 
 [node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_s3uku")]
 layout_mode = 0
@@ -159,4 +200,5 @@ text = "Prestige"
 script = ExtResource("8_j7idd")
 use_small_button_sound = true
 
+[connection signal="pressed" from="ThemeTextureButton" to="." method="_on_theme_texture_button_pressed"]
 [connection signal="pressed" from="PrestigeButton" to="." method="_on_prestige_button_pressed"]

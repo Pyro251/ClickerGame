@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://bavw10vospdew"]
+
+[resource]
+bg_color = Color(0.8, 0.8352941, 0.68235296, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+shadow_size = 56

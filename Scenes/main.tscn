@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://n6lpkqp632w5" path="res://Scenes/main.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="3_hptm8"]
 [ext_resource type="Texture2D" uid="uid://rfhg6beuuw82" path="res://assets/CasuelUIAddon/Icons/64px/settings_icon_64px.png" id="3_kry3j"]
 [ext_resource type="Script" uid="uid://csxwm1367ohuc" path="res://Scripts/texture_button.gd" id="4_6bp64"]
 [ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="4_21xkr"]
+[ext_resource type="StyleBox" uid="uid://b884ssor36ta2" path="res://resources/Panels/top_panel.tres" id="4_d1ilt"]
+[ext_resource type="StyleBox" uid="uid://bavw10vospdew" path="res://resources/Panels/bottom_panel.tres" id="5_6iyac"]
 [ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="5_344ge"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="5_fdnlq"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="7_d1ilt"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="8_6iyac"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="9_fdnlq"]
@@ -13,24 +17,10 @@
 [sub_resource type="Theme" id="Theme_344ge"]
 default_font = ExtResource("5_344ge")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1fef"]
-bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
-shadow_size = 56
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
-bg_color = Color(0.8, 0.8352941, 0.68235296, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-shadow_size = 56
-
 [sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
 font = ExtResource("5_344ge")
 font_size = 51
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_khhxn"]
-font_size = 40
-font_color = Color(0.6795756, 0.7207819, 0.5337484, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
 bg_color = Color(0.99607843, 0.98039216, 0.8784314, 1)
@@ -70,12 +60,11 @@ unicode = 32
 [sub_resource type="Shortcut" id="Shortcut_g3au0"]
 events = [SubResource("InputEventKey_d1ilt")]
 
+[sub_resource type="LabelSettings" id="LabelSettings_khhxn"]
+font_size = 40
+
 [sub_resource type="Theme" id="Theme_s1fef"]
 default_font_size = 76
-
-[sub_resource type="LabelSettings" id="LabelSettings_ynf5e"]
-font_size = 45
-font_color = Color(0.7198893, 0.7623777, 0.5833949, 1)
 
 [node name="Main" type="Control" unique_id=1713389506]
 layout_mode = 3
@@ -96,6 +85,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("3_hptm8")
 
 [node name="TopBackground" type="Panel" parent="." unique_id=1910492733]
 layout_mode = 1
@@ -106,7 +96,8 @@ offset_left = -78.0
 offset_top = -49.0
 offset_right = 70.0
 offset_bottom = 0.31999207
-theme_override_styles/panel = SubResource("StyleBoxFlat_s1fef")
+theme_override_styles/panel = ExtResource("4_d1ilt")
+script = ExtResource("5_fdnlq")
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=1923581057]
 layout_mode = 1
@@ -119,7 +110,8 @@ offset_left = 0.07999802
 offset_top = -0.08001709
 offset_right = -0.20007324
 offset_bottom = 242.10803
-theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
+theme_override_styles/panel = ExtResource("5_6iyac")
+script = ExtResource("5_fdnlq")
 
 [node name="GuiTransition" type="Node" parent="." unique_id=1131995483]
 script = ExtResource("2_jjvhh")
@@ -216,8 +208,8 @@ offset_right = 74.0
 offset_bottom = -135.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 40
 text = "Prestige"
-label_settings = SubResource("LabelSettings_khhxn")
 
 [node name="ClickButton" type="Button" parent="." unique_id=1015561856]
 layout_mode = 1
@@ -334,8 +326,8 @@ anchor_bottom = 0.99000007
 offset_top = -0.16003418
 offset_right = -0.16003418
 offset_bottom = -0.60009766
-text = "v1.0.2"
-label_settings = SubResource("LabelSettings_ynf5e")
+theme_override_font_sizes/font_size = 44
+text = "v1.0.3"
 horizontal_alignment = 1
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]

@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://c7xts8ufv1pld"]
+
+[ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_hljmh"]
+[ext_resource type="Script" uid="uid://bguyivpuxxxr2" path="res://Scripts/theme_element.gd" id="4_sqsri"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8a7gc"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 7
+shadow_offset = Vector2(0, 5.53)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bh4xr"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_offset = Vector2(0, 5.53)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dngev"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 20
+shadow_offset = Vector2(0, 12.71)
+
+[sub_resource type="LabelSettings" id="LabelSettings_khhxn"]
+font_size = 66
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8a7gc"]
+font_size = 52
+font_color = Color(0.39906758, 0.47931284, 0.36307278, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
+font_size = 41
+font_color = Color(0, 0, 0, 1)
+
+[node name="ThemeElement" type="Button" unique_id=952159024]
+custom_minimum_size = Vector2(500, 300)
+offset_left = 46.0
+offset_top = 40.0
+offset_right = 546.0
+offset_bottom = 414.0
+theme = ExtResource("1_hljmh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8a7gc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bh4xr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dngev")
+script = ExtResource("4_sqsri")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=507313459]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.5
+offset_right = 69.5
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_khhxn")
+
+[node name="CostLabel" type="Label" parent="." unique_id=1890009594]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.024
+anchor_top = 0.25
+anchor_right = 0.9760001
+anchor_bottom = 0.46300003
+offset_right = -3.0517578e-05
+offset_bottom = 0.099990845
+text = "####$"
+label_settings = SubResource("LabelSettings_8a7gc")
+horizontal_alignment = 1
+
+[node name="AccentLabel" type="Label" parent="." unique_id=1801452033]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.402
+anchor_top = 0.666
+anchor_right = 0.66400003
+anchor_bottom = 0.799
+offset_left = -10.0
+offset_top = -0.083999634
+offset_right = -11.0000305
+offset_bottom = 0.17398071
+text = "Accent"
+label_settings = SubResource("LabelSettings_s1fef")
+
+[node name="MainLabel" type="Label" parent="." unique_id=689974346]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.098000005
+anchor_top = 0.666
+anchor_right = 0.282
+anchor_bottom = 0.799
+offset_left = -6.000004
+offset_top = -0.083999634
+offset_right = -9.0
+offset_bottom = 0.17398071
+text = "Main"
+label_settings = SubResource("LabelSettings_s1fef")
+
+[node name="TextLabel" type="Label" parent="." unique_id=1091966050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.754
+anchor_top = 0.666
+anchor_right = 0.93200004
+anchor_bottom = 0.799
+offset_left = -32.0
+offset_top = -0.083999634
+offset_right = 18.99997
+offset_bottom = 0.17398071
+text = "Buttons"
+label_settings = SubResource("LabelSettings_s1fef")
+
+[node name="MainColorRect" type="ColorRect" parent="." unique_id=228521669]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.80500007
+anchor_right = 0.312
+anchor_bottom = 0.93700004
+offset_top = -0.07003784
+offset_bottom = -0.1000061
+
+[node name="AccentColorRect" type="ColorRect" parent="." unique_id=1651361078]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36200002
+anchor_top = 0.80500007
+anchor_right = 0.656
+anchor_bottom = 0.93700004
+offset_left = -1.5258789e-05
+offset_top = -0.07003784
+offset_bottom = -0.1000061
+
+[node name="TextColorRect" type="ColorRect" parent="." unique_id=1063507177]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69000006
+anchor_top = 0.80500007
+anchor_right = 0.97200006
+anchor_bottom = 0.93700004
+offset_left = -3.0517578e-05
+offset_top = -0.07003784
+offset_right = -3.0517578e-05
+offset_bottom = -0.1000061
+
+[node name="EquippedLabel" type="Label" parent="." unique_id=761330345]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326
+anchor_top = 0.48100004
+anchor_right = 0.69000006
+anchor_bottom = 0.615
+offset_top = 0.10598755
+offset_right = -3.0517578e-05
+offset_bottom = -0.010009766
+text = "Equipped!"
+label_settings = SubResource("LabelSettings_s1fef")
+
+[node name="EquipButton" type="Button" parent="." unique_id=1625375094]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.172
+anchor_top = 0.45200002
+anchor_right = 0.85200006
+anchor_bottom = 0.63900006
+offset_top = -0.04800415
+offset_right = -3.0517578e-05
+offset_bottom = 0.013977051
+theme_override_font_sizes/font_size = 37
+text = "Equip"
+
+[connection signal="pressed" from="EquipButton" to="." method="_on_equip_button_pressed"]

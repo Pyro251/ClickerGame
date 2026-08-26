@@ -31,7 +31,7 @@ func _button_pressed():
 	button_press_tween.tween_property(self, "scale", pressed_scale, 0.06).set_trans(Tween.TRANS_SINE)
 	button_press_tween.tween_property(self, "scale", hover_scale, 0.12).set_trans(Tween.TRANS_SINE)
 	Global.save_game()
-	get_tree().change_scene_to_file(scene_path)
+	
 	
 	if use_big_button_sound:
 		var new_big_button_sound = BIG_BUTTON_SOUND.instantiate()
@@ -41,3 +41,6 @@ func _button_pressed():
 		var new_small_button_sound = SMALL_BUTTON_SOUND.instantiate()
 		#new_small_button_sound.play()
 		add_child(new_small_button_sound)
+	
+	
+	get_tree().change_scene_to_file(scene_path)

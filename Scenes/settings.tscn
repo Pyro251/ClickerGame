@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_aaqfp"]
 [ext_resource type="Texture2D" uid="uid://vjcp7421o0tn" path="res://assets/CasuelUIAddon/Buttons/buttonExit_black.png" id="2_lhmql"]
 [ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="3_aaqfp"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="3_l7vst"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="4_35cvv"]
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="5_f60ng"]
 [ext_resource type="Script" uid="uid://csxwm1367ohuc" path="res://Scripts/texture_button.gd" id="5_j2dne"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="6_bismi"]
@@ -49,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("3_l7vst")
 
 [node name="TopBackground" type="Panel" parent="." unique_id=12261297]
 layout_mode = 1
@@ -61,6 +64,7 @@ offset_right = 70.0
 offset_bottom = 0.31999207
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j2dne")
+script = ExtResource("4_35cvv")
 
 [node name="GuiTransition" type="Node" parent="." unique_id=689872011]
 script = ExtResource("2_aaqfp")
@@ -121,6 +125,7 @@ offset_bottom = 0.039916992
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s1fef")
+script = ExtResource("4_35cvv")
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsPanel" unique_id=100585250]
 layout_mode = 1

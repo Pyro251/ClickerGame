@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://y6uyrwos02yv"]
+
+[ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="1_jj6sn"]
+[ext_resource type="Script" uid="uid://7unxi783pcsw" path="res://Scripts/theme_shop.gd" id="1_nkx36"]
+[ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="3_bfvk8"]
+[ext_resource type="PackedScene" uid="uid://c7xts8ufv1pld" path="res://Scenes/theme_element.tscn" id="3_gpay4"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="3_nd5c2"]
+[ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="5_gpay4"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="5_ihxph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsh4b"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpay4"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_1u25i"]
+font = ExtResource("3_bfvk8")
+font_size = 87
+font_color = Color(0, 0, 0, 1)
+
+[node name="ThemeShop" type="Control" unique_id=128588696]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkx36")
+
+[node name="GuiTransition" type="Node" parent="." unique_id=2024419277]
+script = ExtResource("1_jj6sn")
+layout = NodePath("..")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransition2" type="Node" parent="." unique_id=1109525399]
+script = ExtResource("1_jj6sn")
+layout = NodePath("..")
+group = NodePath("../ScrollContainer/VBoxContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="BG" type="ColorRect" parent="." unique_id=1201352326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("3_nd5c2")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=941110697]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.192
+anchor_right = 0.98700005
+anchor_bottom = 0.77900004
+offset_left = -25.080002
+offset_top = 0.32000732
+offset_right = 7.3599854
+offset_bottom = 128.33997
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1217943629]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="ThemeElement" parent="ScrollContainer/VBoxContainer" unique_id=952159024 instance=ExtResource("3_gpay4")]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+use_small_button_sound = true
+title = "Soft Peach"
+cost = 200
+main_color = Color(0.99607843, 0.77254903, 0.73333335, 1)
+accent_color = Color(0.84705883, 0.8862745, 0.8627451, 1)
+button_color = Color(0.9936057, 0.62534595, 0.5651916, 1)
+
+[node name="ThemeElement2" parent="ScrollContainer/VBoxContainer" unique_id=311821922 instance=ExtResource("3_gpay4")]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+use_small_button_sound = true
+title = "Sand"
+cost = 500
+main_color = Color(0.87205523, 0.7586891, 0.6312347, 1)
+accent_color = Color(0.6613146, 0.6029097, 0.54399717, 1)
+button_color = Color(0.65022117, 0.5289372, 0.45456922, 1)
+
+[node name="BottomBackground" type="Panel" parent="." unique_id=669570321]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.86300004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -0.020019531
+offset_right = 70.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jsh4b")
+script = ExtResource("5_ihxph")
+
+[node name="TopBackground" type="Panel" parent="." unique_id=213908838]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gpay4")
+script = ExtResource("5_ihxph")
+
+[node name="MoneyLabel" type="Label" parent="TopBackground" unique_id=1567357241]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 64.0
+offset_right = 133.0
+offset_bottom = 170.0
+grow_horizontal = 2
+text = "####"
+label_settings = SubResource("LabelSettings_1u25i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("5_gpay4")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 124.0
+offset_bottom = 122.0
+scene_path = "uid://1ko13v6hoo2e"

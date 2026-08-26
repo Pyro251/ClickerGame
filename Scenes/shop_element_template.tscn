@@ -50,6 +50,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pny2i")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lw0in")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sgep8")
 script = ExtResource("2_sgep8")
+use_small_button_sound = true
 
 [node name="TitleLabel" type="Label" parent="." unique_id=678429146]
 layout_mode = 1

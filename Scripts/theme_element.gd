@@ -1,5 +1,12 @@
 extends Button
 
+@onready var title_label: Label = $TitleLabel
+@onready var cost_label: Label = $CostLabel
+
+@onready var main_color_rect: ColorRect = $MainColorRect
+@onready var accent_color_rect: ColorRect = $AccentColorRect
+@onready var button_color_rect: ColorRect = $TextColorRect
+
 const BIG_BUTTON_SOUND = preload("res://Scenes/big_button_sound.tscn")
 const SMALL_BUTTON_SOUND = preload("res://Scenes/small_button_sound.tscn")
 
@@ -9,15 +16,54 @@ const SMALL_BUTTON_SOUND = preload("res://Scenes/small_button_sound.tscn")
 @export var use_big_button_sound: bool = false
 @export var use_small_button_sound: bool = false
 
+@export var title: String
+@export var cost: int
+
+@export_color_no_alpha var main_color: Color
+@export_color_no_alpha var accent_color: Color
+@export_color_no_alpha var button_color: Color
+
+var owned: bool = false
+
 func _ready() -> void:
+	Global.refresh_theme.connect(refresh_theme)
+	refresh_theme()
+	
+	title_label.text = title
+	cost_label.text = str(cost)
+	
+	main_color_rect.color = main_color
+	accent_color_rect.color = accent_color
+	button_color_rect.color = button_color
+	
+	Global.update_selected_theme.connect(update_selected_theme)
 	mouse_entered.connect(_button_enter)
 	mouse_exited.connect(_button_exit)
 	button_down.connect(_button_pressed)
-	Global.refresh_theme.connect(refresh_theme)
+	
+	if !Global.owned_themes.has(title):
+		Global.owned_themes.get_or_add(title, false)
+		owned = false
+	else:
+		owned = true
+		unequip()
+	
+	
+	#if Global.selected_theme.has(title):
+	if Global.selected_theme[title] == true:
+		equip()
+	else:
+		unequip()
+	#else:
+		#Global.selected_theme[title] = false
 	
 	call_deferred("_init_pivot")
+
+func update_selected_theme():
 	
-	refresh_theme()
+	Global.selected_theme[title] = false
+	unequip()
+	
 
 func refresh_theme():
 	# Setting the button style according to the equipped theme
@@ -63,6 +109,28 @@ func refresh_theme():
 	
 	add_theme_stylebox_override("pressed", pressed_style)
 
+func equip():
+	$EquippedLabel.show()
+	$EquipButton.hide()
+	
+	Global.main_color = main_color
+	Global.accent_color = accent_color
+	Global.button_color = button_color
+	
+	Global.selected_theme[title] = true
+	
+	Global.refresh_theme.emit()
+	
+	Global.save_game()
+	
+	print("Colors set to: \n Main:", Global.main_color, "\n Accent:", Global.accent_color, "\n Text:", Global.button_color)
+
+func unequip():
+	$EquippedLabel.hide()
+	$EquipButton.show()
+	
+	Global.selected_theme[title] = false
+
 func _init_pivot():
 	pivot_offset = size/2.0
 
@@ -87,3 +155,16 @@ func _button_pressed():
 		var new_small_button_sound = SMALL_BUTTON_SOUND.instantiate()
 		#new_small_button_sound.play()
 		add_child(new_small_button_sound)
+		
+	
+	if Global.total_clicks >= cost:
+		Global.total_clicks -= cost
+		Global.update_selected_theme.emit()
+		Global.selected_theme[title] = true
+		equip()
+		Global.save_game()
+
+
+func _on_equip_button_pressed() -> void:
+	Global.update_selected_theme.emit()
+	equip()
