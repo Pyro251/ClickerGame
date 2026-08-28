@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1ew4lp8otd7u"]
 
 [ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_5konv"]
-[ext_resource type="Script" uid="uid://hlfg3she5eoa" path="res://Scenes/sign_in_screen.gd" id="1_pbk4u"]
+[ext_resource type="Script" uid="uid://hlfg3she5eoa" path="res://Scripts/sign_in_screen.gd" id="1_pbk4u"]
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_hu61l"]
 [ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="3_g3au0"]
 [ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="3_l5pxi"]
@@ -10,6 +10,8 @@
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="5_4aepi"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="6_2hs17"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="7_eodnw"]
+[ext_resource type="Texture2D" uid="uid://cvae82bkltfdn" path="res://assets/CleanIconPack/view.png" id="7_xbld8"]
+[ext_resource type="Script" uid="uid://csxwm1367ohuc" path="res://Scripts/texture_button.gd" id="8_p2exp"]
 [ext_resource type="AudioStream" uid="uid://tk0uj5ebty08" path="res://assets/Sounds/recorded/typing1.ogg" id="10_eodnw"]
 [ext_resource type="AudioStream" uid="uid://b4ynm03wg8rlg" path="res://assets/Sounds/recorded/Typing2.ogg" id="11_ul3lg"]
 [ext_resource type="AudioStream" uid="uid://oi0y8b5onpin" path="res://assets/Sounds/recorded/Typing3.ogg" id="12_asqsl"]
@@ -139,9 +141,13 @@ theme_override_styles/focus = ExtResource("4_5konv")
 placeholder_text = "Username"
 alignment = 1
 
-[node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer" unique_id=45470042]
-custom_minimum_size = Vector2(0, 85)
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1658360929]
 layout_mode = 2
+
+[node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=45470042]
+custom_minimum_size = Vector2(516.24, 85)
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_uneditable_color = Color(0, 0, 0, 0.5019608)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
@@ -155,6 +161,18 @@ theme_override_styles/focus = ExtResource("4_5konv")
 placeholder_text = "Password"
 alignment = 1
 secret = true
+
+[node name="ShowPasswordTextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1607256794]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_xbld8")
+texture_pressed = ExtResource("7_xbld8")
+texture_hover = ExtResource("7_xbld8")
+texture_disabled = ExtResource("7_xbld8")
+texture_focused = ExtResource("7_xbld8")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_p2exp")
 
 [node name="SubmitButton" type="Button" parent="VBoxContainer" unique_id=910063687]
 custom_minimum_size = Vector2(0, 100)
@@ -205,7 +223,8 @@ use_small_button_sound = true
 stream = SubResource("AudioStreamRandomizer_5konv")
 
 [connection signal="text_changed" from="VBoxContainer/UsernameLineEdit" to="." method="_on_username_line_edit_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/PasswordLineEdit" to="." method="_on_password_line_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/PasswordLineEdit" to="." method="_on_password_line_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ShowPasswordTextureButton" to="." method="_on_show_password_texture_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LogInButton" to="." method="_on_log_in_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/DevLogInButton" to="." method="_on_dev_log_in_button_pressed"]

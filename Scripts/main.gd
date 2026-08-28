@@ -26,7 +26,7 @@ func _ready() -> void:
 		Talo.current_player.set_prop("total_clicks", "0")
 		print("set total clicks to 0")
 	
-	if Talo.current_player.get_prop("money_multiplier") == "":
+	if Talo.current_player.get_prop("money_multiplier") == "" or Talo.current_player.get_prop("money_multiplier") == "0":
 		Talo.current_player.set_prop("money_multiplier", "1.0")
 		print("set money_multiplier to 1.0")
 	

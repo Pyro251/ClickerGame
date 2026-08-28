@@ -3,6 +3,11 @@ extends Control
 
 @onready var validation_label: Label = $VBoxContainer/ValidationLabel
 @onready var typing_sounds: AudioStreamPlayer = $TypingSounds
+@onready var password_line_edit: LineEdit = $VBoxContainer/HBoxContainer/PasswordLineEdit
+@onready var show_password_texture_button: TextureButton = $VBoxContainer/HBoxContainer/ShowPasswordTextureButton
+
+const VIEW_ICON = preload("res://assets/CleanIconPack/view.png")
+const X_ICON = preload("res://assets/CleanIconPack/x.png")
 
 var can_find_session: bool = true
 
@@ -69,3 +74,16 @@ func _on_dev_log_in_button_pressed() -> void:
 			#verification_required.emit()
 		Talo.player_auth.LoginResult.OK:
 			get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+
+func _on_show_password_texture_button_pressed() -> void:
+	if password_line_edit.secret:
+		password_line_edit.secret = false
+		show_password_texture_button.texture_normal = X_ICON
+		show_password_texture_button.texture_hover = X_ICON
+		show_password_texture_button.texture_pressed = X_ICON
+	else:
+		password_line_edit.secret = true
+		show_password_texture_button.texture_normal = VIEW_ICON
+		show_password_texture_button.texture_hover = VIEW_ICON
+		show_password_texture_button.texture_pressed = VIEW_ICON

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://1ko13v6hoo2e"]
 
-[ext_resource type="Script" uid="uid://n6lpkqp632w5" path="res://Scenes/main.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://n6lpkqp632w5" path="res://Scripts/main.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="3_hptm8"]
 [ext_resource type="Texture2D" uid="uid://rfhg6beuuw82" path="res://assets/CasuelUIAddon/Icons/64px/settings_icon_64px.png" id="3_kry3j"]
@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="7_d1ilt"]
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="8_6iyac"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="9_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://bjqitofvubrm3" path="res://Scenes/fullscreen_button.tscn" id="14_jkdf5"]
 
 [sub_resource type="Theme" id="Theme_344ge"]
 default_font = ExtResource("5_344ge")
@@ -371,11 +372,23 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
-text = "v1.0.4"
+text = "v1.0.5"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
 one_shot = true
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1136427966]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FullscreenButton" parent="." unique_id=1257253404 instance=ExtResource("14_jkdf5")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 29.0
+offset_right = 73.0
+offset_bottom = 96.0
 
 [connection signal="pressed" from="PlayerNameButton" to="." method="_on_player_name_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
