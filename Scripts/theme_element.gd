@@ -48,6 +48,8 @@ func _ready() -> void:
 		owned = true
 		unequip()
 	
+	if Global.owned_themes[title]:
+		cost_label.hide()
 	
 	if Global.selected_theme.has(title):
 		if Global.selected_theme[title] == true:
@@ -56,6 +58,10 @@ func _ready() -> void:
 			unequip()
 	else:
 		Global.selected_theme[title] = false
+	
+	
+	Global.save_game()
+	
 	
 	call_deferred("_init_pivot")
 
@@ -158,9 +164,11 @@ func _button_pressed():
 		
 	
 	if Global.total_clicks >= cost:
-		Global.total_clicks -= cost
+		if !Global.owned_themes[title]:
+			Global.total_clicks -= cost
 		Global.update_selected_theme.emit()
 		Global.selected_theme[title] = true
+		cost_label.hide()
 		equip()
 		Global.save_game()
 

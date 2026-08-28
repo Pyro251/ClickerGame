@@ -22,6 +22,9 @@ font = ExtResource("5_344ge")
 font_size = 51
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khhxn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
 bg_color = Color(0.99607843, 0.98039216, 0.8784314, 1)
 corner_radius_top_left = 75
@@ -51,14 +54,6 @@ corner_radius_bottom_left = 75
 shadow_color = Color(0, 0, 0, 0.4627451)
 shadow_size = 35
 shadow_offset = Vector2(0, 15.165)
-
-[sub_resource type="InputEventKey" id="InputEventKey_d1ilt"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_g3au0"]
-events = [SubResource("InputEventKey_d1ilt")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_khhxn"]
 font_size = 40
@@ -121,6 +116,7 @@ layout = NodePath("..")
 metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="PlayerNameLabel" type="Label" parent="." unique_id=987146769]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.12200001
@@ -139,6 +135,28 @@ label_settings = SubResource("LabelSettings_s1fef")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 5
+
+[node name="PlayerNameButton" type="Button" parent="." unique_id=35946112]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -273.5
+offset_top = 32.0
+offset_right = 273.5
+offset_bottom = 97.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+theme_override_colors/font_pressed_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
+theme_override_colors/font_hover_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_fonts/font = ExtResource("5_344ge")
+theme_override_font_sizes/font_size = 53
+theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
+text = "Player Name Loading..."
 
 [node name="SettingsButton" type="TextureButton" parent="." unique_id=1753440385]
 layout_mode = 1
@@ -224,6 +242,7 @@ offset_right = 142.87997
 offset_bottom = -0.20007324
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -234,7 +253,6 @@ theme_override_font_sizes/font_size = 81
 theme_override_styles/normal = SubResource("StyleBoxFlat_344ge")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hptm8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ynf5e")
-shortcut = SubResource("Shortcut_g3au0")
 shortcut_feedback = false
 text = "Click Here"
 script = ExtResource("4_21xkr")
@@ -317,6 +335,7 @@ script = ExtResource("4_21xkr")
 use_small_button_sound = true
 
 [node name="VersionLabel" type="Label" parent="." unique_id=1311248586]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.075
@@ -327,16 +346,42 @@ offset_top = -0.16003418
 offset_right = -0.16003418
 offset_bottom = -0.60009766
 theme_override_font_sizes/font_size = 44
-text = "v1.0.3"
+text = "v1.0.4"
 horizontal_alignment = 1
+
+[node name="VersionButton" type="Button" parent="." unique_id=709706023]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.5
+offset_top = -75.0
+offset_right = 149.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+theme_override_colors/font_hover_color = Color(0.60122275, 0.6012229, 0.60122395, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.4506483, 0.4506483, 0.45064825, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
+text = "v1.0.4"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
 one_shot = true
 
+[connection signal="pressed" from="PlayerNameButton" to="." method="_on_player_name_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ClickButton" to="." method="_on_click_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ManuelSaveButton" to="." method="_on_manuel_save_button_pressed"]
+[connection signal="pressed" from="VersionButton" to="." method="_on_version_button_pressed"]
 [connection signal="timeout" from="GameSavedTimer" to="." method="_on_game_saved_timer_timeout"]

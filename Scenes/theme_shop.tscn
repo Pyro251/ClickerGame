@@ -107,6 +107,17 @@ main_color = Color(0.9764706, 0.84705883, 0.42352942, 1)
 accent_color = Color(0.9607843, 0.54509807, 0.48235294, 1)
 button_color = Color(0.5568628, 0.81960785, 0.9098039, 1)
 
+[node name="ThemeElement4" parent="ScrollContainer/VBoxContainer" unique_id=558726656 instance=ExtResource("3_gpay4")]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+use_small_button_sound = true
+title = "Ice"
+cost = 15000
+main_color = Color(0.8200051, 0.93128675, 0.9209111, 1)
+accent_color = Color(0.6440682, 0.85957915, 0.8222257, 1)
+button_color = Color(0.85813224, 0.92619526, 0.90993536, 1)
+
 [node name="BottomBackground" type="Panel" parent="." unique_id=669570321]
 layout_mode = 1
 anchors_preset = -1

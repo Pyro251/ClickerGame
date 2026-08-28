@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://8db1vcl8b844"]
+
+[ext_resource type="Theme" uid="uid://dkg4dsuhxk7p8" path="res://resources/Themes/default_theme.tres" id="1_v2eul"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="2_3blug"]
+[ext_resource type="StyleBox" uid="uid://b884ssor36ta2" path="res://resources/Panels/top_panel.tres" id="3_bruqj"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="4_r3cl3"]
+[ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="5_3blug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v2eul"]
+font_size = 69
+font_color = Color(0, 0, 0, 1)
+
+[node name="ProfileMenu" type="Control" unique_id=2090281282]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v2eul")
+
+[node name="BG" type="ColorRect" parent="." unique_id=455950117]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("2_3blug")
+
+[node name="TopBackground" type="Panel" parent="." unique_id=1169750809]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+theme_override_styles/panel = ExtResource("3_bruqj")
+script = ExtResource("4_r3cl3")
+
+[node name="TitleLabel" type="Label" parent="TopBackground" unique_id=295380181]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -209.5
+offset_top = 80.0
+offset_right = 209.5
+offset_bottom = 160.0
+grow_horizontal = 2
+text = "Profile"
+label_settings = SubResource("LabelSettings_v2eul")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("5_3blug")]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 122.0
+offset_bottom = 122.0
+scene_path = "uid://1ko13v6hoo2e"
+
+[node name="ComingSoonLabel" type="Label" parent="." unique_id=104720342]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 503.0
+offset_right = 206.0
+offset_bottom = 588.0
+grow_horizontal = 2
+text = "Coming Soon!"
+label_settings = SubResource("LabelSettings_v2eul")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BG2" type="ColorRect" parent="." unique_id=753260980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("2_3blug")
+
+[node name="TopBackground2" type="Panel" parent="." unique_id=788901878]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+theme_override_styles/panel = ExtResource("3_bruqj")
+script = ExtResource("4_r3cl3")
+
+[node name="TitleLabel" type="Label" parent="TopBackground2" unique_id=1577250636]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -209.5
+offset_top = 80.0
+offset_right = 209.5
+offset_bottom = 160.0
+grow_horizontal = 2
+text = "Profile"
+label_settings = SubResource("LabelSettings_v2eul")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton2" parent="." unique_id=451667736 instance=ExtResource("5_3blug")]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 122.0
+offset_bottom = 122.0
+scene_path = "uid://1ko13v6hoo2e"
+
+[node name="ComingSoonLabel2" type="Label" parent="." unique_id=1194960585]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 503.0
+offset_right = 206.0
+offset_bottom = 588.0
+grow_horizontal = 2
+text = "Coming Soon!"
+label_settings = SubResource("LabelSettings_v2eul")
+horizontal_alignment = 1
+vertical_alignment = 1

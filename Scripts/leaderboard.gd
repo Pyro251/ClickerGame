@@ -24,7 +24,7 @@ func fetch_and_display_leaderboards() -> void:
 	var my_page_data := await Talo.leaderboards.get_entries(leaderboard_internal_name, my_options)
 
 	# 3. Process the Top 10 Entries for the RichTextLabel
-	var bbcode: String = "[center][b]TOP 10 PLAYERS[/b][/center]\n\n"
+	var bbcode: String
 
 	if page_data and page_data.entries.size() > 0:
 		var limit = min(page_data.entries.size(), 10)

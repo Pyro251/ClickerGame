@@ -5,6 +5,7 @@ signal save_game_signal
 signal game_saved
 signal update_selected_theme
 signal refresh_theme
+signal update_money_label
 
 const lboard_name: String = "clicker_game_lboard"
 
@@ -64,11 +65,11 @@ func save_game():
 	
 	await Talo.current_player.set_prop("selected_theme", str(selected_theme))
 	
-	await Talo.current_player.set_prop("main_color", str(main_color))
+	await Talo.current_player.set_prop("main_color", main_color.to_html())
 	
-	await Talo.current_player.set_prop("accent_color", str(accent_color))
+	await Talo.current_player.set_prop("accent_color", accent_color.to_html())
 	
-	await Talo.current_player.set_prop("button_color", str(button_color))
+	await Talo.current_player.set_prop("button_color", button_color.to_html())
 	
 	print("game saved")
 	await update_leaderboard()
