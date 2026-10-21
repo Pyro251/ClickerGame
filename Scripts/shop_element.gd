@@ -3,10 +3,10 @@ extends Button
 const BIG_BUTTON_SOUND = preload("res://Scenes/big_button_sound.tscn")
 const SMALL_BUTTON_SOUND = preload("res://Scenes/small_button_sound.tscn")
 
-@onready var title_label: Label = $TitleLabel
-@onready var cost_label: Label = $CostLabel
+@onready var title_label: Label = $VBoxContainer/TitleLabel
+@onready var cost_label: Label = $VBoxContainer/CostLabel
 @onready var owned_amount_label: Label = $OwnedAmountLabel
-@onready var description_rich_text_label: RichTextLabel = $DescriptionRichTextLabel
+@onready var description_rich_text_label: RichTextLabel = $VBoxContainer/DescriptionRichTextLabel
 
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)
 @export var pressed_scale: Vector2 = Vector2(0.9, 0.9)

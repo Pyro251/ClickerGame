@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="4_62nsy"]
 [ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="5_n7u1m"]
 [ext_resource type="FontFile" uid="uid://e6iao7nlj6mu" path="res://assets/Fonts/static/Fredoka-Bold.ttf" id="6_j5saw"]
+[ext_resource type="PackedScene" uid="uid://vbnohpsiql3f" path="res://Scenes/changelog_element.tscn" id="7_auxqp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n5e1q"]
 font_size = 69
@@ -66,6 +67,7 @@ offset_bottom = 122.0
 scene_path = "uid://1ko13v6hoo2e"
 
 [node name="CurrentVersionLabel" type="Label" parent="." unique_id=1868639440]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -101,6 +103,29 @@ theme_override_font_sizes/bold_italics_font_size = 50
 theme_override_font_sizes/italics_font_size = 45
 theme_override_font_sizes/mono_font_size = 45
 bbcode_enabled = true
-text = "- Made fullscreen option
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=529690817]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.28300002
+anchor_right = 0.90000004
+anchor_bottom = 0.94000006
+offset_top = 0.17996216
+offset_bottom = -0.60009766
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="ChangelogElement" parent="VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.0.6"
+version_description = "- Added changelog labels
+- Added more shop stuff"
+
+[node name="ChangelogElement2" parent="VBoxContainer" unique_id=1273626601 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.0.5"
+version_description = "- Made fullscreen option
 - Re-fixed first sign-in not working
 - Made show and hide password button for sing in page"

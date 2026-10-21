@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://vbnohpsiql3f"]
+
+[ext_resource type="Script" uid="uid://cg3t786ixo0eh" path="res://Scripts/changelog_element.gd" id="1_w0sdx"]
+[ext_resource type="FontFile" uid="uid://dmnfbt57u46ac" path="res://assets/Fonts/static/Fredoka-SemiBold.ttf" id="2_usa74"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ppav"]
+bg_color = Color(0.86263317, 0.84017664, 0.8095089, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ppav"]
+font = ExtResource("2_usa74")
+font_size = 31
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_c6pwh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_csf7o"]
+resource_name = "down"
+length = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0, 300, -0.025000002, -41.666668, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+
+[sub_resource type="Animation" id="Animation_5rtqo"]
+resource_name = "up"
+length = 0.15
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(300, -0.025000002, -41.666668, 0, 0, 50, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o026i"]
+_data = {
+&"RESET": SubResource("Animation_c6pwh"),
+&"down": SubResource("Animation_csf7o"),
+&"up": SubResource("Animation_5rtqo")
+}
+
+[node name="ChangelogElement" type="Panel" unique_id=1520556494]
+custom_minimum_size = Vector2(0, 50)
+offset_right = 718.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ppav")
+script = ExtResource("1_w0sdx")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1667662016]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 27
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1357936600]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=860149400]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelVersion" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1218844117]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Version"
+label_settings = SubResource("LabelSettings_2ppav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonExpandOrCompress" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2038058163]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(37.33, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "+"
+
+[node name="VersionDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=1798725424]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "AAAAAAAA
+AAAAAAAA
+AAAAAAAAAA
+AAAAAAAAA
+AAAAAAAAAA"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=72528919]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_o026i")
