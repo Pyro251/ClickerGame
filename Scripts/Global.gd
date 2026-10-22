@@ -98,3 +98,26 @@ func update_leaderboard():
 	}
 	var res = await Talo.leaderboards.add_entry(lboard_name, total_clicks, metadata)
 	print("Added score: %s, at position: %s, new high score: %s" % [Global.total_clicks, res.entry.position, "yes" if res.updated else "no"])
+
+func simplify_number(number: int):
+	
+	var new_number: String
+	
+	
+	if number > 1000 and number < 1000000:
+		new_number = str(number / 1000, "k")
+	elif number > 1000000 and number < 100000000000:
+		new_number = str(number / 1000000, "M")
+	elif number > 1000000000 and number < 1000000000000:
+		new_number = str(number / 1000000000, "B")
+	elif number > 1000000000000 and number < 1000000000000000:
+		new_number = str(number / 1000000000000, "T")
+	elif number > 1000000000000000 and number < 1000000000000000000:
+		new_number = str(number / 1000000000000000, "Qa")
+	elif number > 1000000000000000000 and number < 1000000000000000000000:
+		new_number = str(number / 1000000000000000000, "Qi")
+	else:
+		new_number = str(number)
+	new_number = str("$", new_number)
+	
+	return new_number

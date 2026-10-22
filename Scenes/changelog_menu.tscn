@@ -117,7 +117,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 35
 
-[node name="ChangelogElement" parent="VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+[node name="ChangelogElement3" parent="VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.0.7"
+version_description = "- Added number simplification in all menus
+- Named shop items
+- Shop items now tell you how may clicks per second you get
+"
+
+[node name="ChangelogElement" parent="VBoxContainer" unique_id=1222686539 instance=ExtResource("7_auxqp")]
 layout_mode = 2
 version = "v1.0.6"
 version_description = "- Added changelog labels

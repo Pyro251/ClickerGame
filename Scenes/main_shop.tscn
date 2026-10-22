@@ -176,19 +176,25 @@ title = "Ok Clicker"
 layout_mode = 2
 cost = 40000
 cps = 1200
-title = "Ok Clicker"
+title = "Good Clicker"
 
 [node name="ShopElementTemplate9" parent="ScrollContainer/GridContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 75000
 cps = 2400
-title = "Ok Clicker"
+title = "Better Clicker"
 
 [node name="ShopElementTemplate10" parent="ScrollContainer/GridContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 140000
 cps = 5000
-title = "Good Clicker"
+title = "A Little Bit Better Clicker"
+
+[node name="ShopElementTemplate11" parent="ScrollContainer/GridContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 250000
+cps = 10000
+title = "Better Better Clicker"
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
 layout_mode = 1

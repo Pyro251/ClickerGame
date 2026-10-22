@@ -143,6 +143,10 @@ func update_money_label():
 	if Global.total_clicks > 1000000000 and Global.total_clicks < 1000000000000:
 		clicks_label.text = str(Global.total_clicks / 1000000000, "B")
 
+
+
+
+
 func update_clicks(clicks: int):
 	var new_money_counter = MONEY_COUNTER_PARTICLE.instantiate()
 	new_money_counter.clicks = clicks

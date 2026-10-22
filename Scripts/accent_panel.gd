@@ -1,3 +1,4 @@
+class_name AccentPanel
 extends Panel
 
 

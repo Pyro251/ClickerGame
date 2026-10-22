@@ -42,7 +42,7 @@ func _ready() -> void:
 		Global.owned_items[title] += 1
 	
 	
-	owned_amount_label.text = str("Owned: ", Global.owned_items[title])
+	owned_amount_label.text = str("Owned: ", int(Global.owned_items[title]))
 
 func refresh_theme():
 	# Setting the button style according to the equipped theme
@@ -110,7 +110,7 @@ func _button_pressed():
 		else:
 			Global.owned_items[title] += 1
 		
-		owned_amount_label.text = str("Owned: ", Global.owned_items[title])
+		owned_amount_label.text = str("Owned: ", int(Global.owned_items[title]))
 	
 	if use_big_button_sound:
 		var new_big_button_sound = BIG_BUTTON_SOUND.instantiate()

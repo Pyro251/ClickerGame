@@ -1,4 +1,4 @@
-extends Panel
+extends AccentPanel
 
 var expanded: bool = false
 

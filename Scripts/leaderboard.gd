@@ -37,7 +37,7 @@ func fetch_and_display_leaderboards() -> void:
 			# display_name falls back to the alias identifier (username) automatically
 			var player_name = entry.player_alias.display_name
 
-			bbcode += "#%d %s - [b]%s[/b]\n" % [rank, player_name, str(score),]
+			bbcode += "#%d %s - [b]%s[/b]\n" % [rank, player_name, Global.simplify_number(score),]
 	else:
 		bbcode += "[center]No scores yet![/center]\n"
 
@@ -50,7 +50,7 @@ func fetch_and_display_leaderboards() -> void:
 
 	# 5. Display the player's best score safely
 	if my_entry:
-		player_score_label.text = "Your Best: #%d with a score of %s" % [my_entry.position + 1, str(int(my_entry.score))]
+		player_score_label.text = "Your Best: #%d with a score of %s" % [my_entry.position + 1, Global.simplify_number(my_entry.score)]
 	else:
 		player_score_label.text = "You haven't posted a score yet."
 
