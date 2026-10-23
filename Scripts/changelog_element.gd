@@ -14,7 +14,9 @@ func _ready() -> void:
 func expand_or_compress():
 	if expanded:
 		%AnimationPlayer.play("up")
+		%ButtonExpandOrCompress.text = "+"
 	else:
 		%AnimationPlayer.play("down")
+		%ButtonExpandOrCompress.text = "-"
 	
 	expanded = !expanded

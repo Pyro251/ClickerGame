@@ -4,7 +4,13 @@
 [ext_resource type="FontFile" uid="uid://dmnfbt57u46ac" path="res://assets/Fonts/static/Fredoka-SemiBold.ttf" id="2_usa74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ppav"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.06879829, 0.068798274, 0.068798214, 1)
+border_blend = true
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -14,7 +20,6 @@ shadow_size = 13
 [sub_resource type="LabelSettings" id="LabelSettings_2ppav"]
 font = ExtResource("2_usa74")
 font_size = 31
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_c6pwh"]
 length = 0.001
@@ -25,6 +30,28 @@ tracks/0/path = NodePath(".:size:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:custom_minimum_size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:custom_minimum_size:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(50, -0.075, 0, 0.075, 0),
 "times": PackedFloat32Array(0)
@@ -44,6 +71,28 @@ tracks/0/keys = {
 "points": PackedFloat32Array(50, -0.075, 0, 0.075, 0, 300, -0.025000002, -41.666668, 0, 0),
 "times": PackedFloat32Array(0, 0.15)
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:custom_minimum_size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 0, -0.025000002, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:custom_minimum_size:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0, 300, -0.025000002, -41.666668, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
 
 [sub_resource type="Animation" id="Animation_5rtqo"]
 resource_name = "up"
@@ -57,6 +106,28 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(300, -0.025000002, -41.666668, 0, 0, 50, -0.075, 0, 0.075, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:custom_minimum_size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 0, -0.025000002, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:custom_minimum_size:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(300, -0.075, 0, 0.075, 0, 50, -0.025000002, 41.666668, 0, 0),
 "times": PackedFloat32Array(0, 0.15)
 }
 
@@ -93,6 +164,7 @@ alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=860149400]
 layout_mode = 2
+theme_override_constants/separation = 63
 alignment = 1
 
 [node name="LabelVersion" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1218844117]
@@ -114,7 +186,7 @@ text = "+"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "AAAAAAAA
 AAAAAAAA

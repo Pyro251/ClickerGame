@@ -372,7 +372,7 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
-text = "v1.0.7"
+text = "v1.0.8"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0

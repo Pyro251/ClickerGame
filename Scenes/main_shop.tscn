@@ -141,60 +141,70 @@ layout_mode = 2
 cost = 200
 cps = 2
 title = "Tiny Clicker"
+custom_description = "Increases clicks per second by 2"
 
 [node name="ShopElementTemplate3" parent="ScrollContainer/GridContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1000
 cps = 15
 title = "Small Clicker"
+custom_description = "Increases clicks per second by 15"
 
 [node name="ShopElementTemplate4" parent="ScrollContainer/GridContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 2500
 cps = 50
 title = "Medium Clicker"
+custom_description = "Increases clicks per second by 50"
 
 [node name="ShopElementTemplate5" parent="ScrollContainer/GridContainer" unique_id=228609207 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 7000
 cps = 150
 title = "Slightly Less Mediocre Clicker"
+custom_description = "Increases clicks per second by 150"
 
 [node name="ShopElementTemplate6" parent="ScrollContainer/GridContainer" unique_id=720161052 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 13000
 cps = 300
 title = "Kinda Mediocre Clicker"
+custom_description = "Increases clicks per second by 300"
 
 [node name="ShopElementTemplate7" parent="ScrollContainer/GridContainer" unique_id=1894088417 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 24000
 cps = 600
 title = "Ok Clicker"
+custom_description = "Increases clicks per second by 600"
 
 [node name="ShopElementTemplate8" parent="ScrollContainer/GridContainer" unique_id=172150125 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 40000
 cps = 1200
 title = "Good Clicker"
+custom_description = "Increases clicks per second by 1,200"
 
 [node name="ShopElementTemplate9" parent="ScrollContainer/GridContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 75000
 cps = 2400
 title = "Better Clicker"
+custom_description = "Increases clicks per second by 2,400"
 
 [node name="ShopElementTemplate10" parent="ScrollContainer/GridContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 140000
 cps = 5000
 title = "A Little Bit Better Clicker"
+custom_description = "Increases clicks per second by 5,000"
 
 [node name="ShopElementTemplate11" parent="ScrollContainer/GridContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 250000
 cps = 10000
 title = "Better Better Clicker"
+custom_description = "Increases clicks per second by 10,000"
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
 layout_mode = 1
