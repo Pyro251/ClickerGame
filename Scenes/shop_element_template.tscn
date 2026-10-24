@@ -98,3 +98,10 @@ grow_horizontal = 2
 text = "Owned: ##"
 label_settings = SubResource("LabelSettings_lw0in")
 horizontal_alignment = 1
+
+[node name="AutoClickDetectionTimer" type="Timer" parent="." unique_id=54959636]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="AutoClickDetectionTimer" to="." method="_on_auto_click_detection_timer_timeout"]

@@ -18,6 +18,7 @@ const PANEL_STYLES = preload("res://resources/Panels/top_panel.tres")
 @onready var top_background: Panel = $TopBackground
 @onready var bottom_background: Panel = $BottomBackground
 
+var in_auto_clicker_detection_time_zone: bool = false
 
 func _ready() -> void:
 	
@@ -47,8 +48,7 @@ func _ready() -> void:
 	
 	if Talo.current_player.get_prop("owned_items") == "":
 		Talo.current_player.set_prop("owned_items", "")
-	
-		print("Set 'owned_items' to ''")
+		print("Set 'owned_items' to ", Talo.current_player.get_prop("owned_items"))
 	if Talo.current_player.get_prop("owned_themes") == "":
 		Talo.current_player.set_prop("owned_themes", "")
 		print("Set 'owned_themes' to ''")
@@ -135,13 +135,14 @@ func _process(delta: float) -> void:
 	pass
 
 func update_money_label():
-	clicks_label.text = str(Global.total_clicks, "$")
-	if Global.total_clicks > 1000 and Global.total_clicks < 1000000:
-		clicks_label.text = str(Global.total_clicks / 1000, "k")
-	if Global.total_clicks > 1000000 and Global.total_clicks < 100000000000:
-		clicks_label.text = str(Global.total_clicks / 1000000, "M")
-	if Global.total_clicks > 1000000000 and Global.total_clicks < 1000000000000:
-		clicks_label.text = str(Global.total_clicks / 1000000000, "B")
+	clicks_label.text = Global.simplify_number(Global.total_clicks)
+	
+	#if Global.total_clicks > 1000 and Global.total_clicks < 1000000:
+		#clicks_label.text = str(Global.total_clicks / 1000, "k")
+	#if Global.total_clicks > 1000000 and Global.total_clicks < 100000000000:
+		#clicks_label.text = str(Global.total_clicks / 1000000, "M")
+	#if Global.total_clicks > 1000000000 and Global.total_clicks < 1000000000000:
+		#clicks_label.text = str(Global.total_clicks / 1000000000, "B")
 
 
 
@@ -185,6 +186,17 @@ func _on_click_button_pressed() -> void:
 	
 	Input.vibrate_handheld(3, 50)
 	
+	# Auto clicker detection
+	if in_auto_clicker_detection_time_zone:
+		%PanelAutoClickerDetected.show()
+		Global.auto_clicker_strikes -= 1
+		%LabelStrikes.text = str(Global.auto_clicker_strikes, " Strikes left")
+		if Global.auto_clicker_strikes <= 0:
+			# Takes away half of your money
+			Global.total_clicks -= (Global.total_clicks / 4) * 2
+	
+	in_auto_clicker_detection_time_zone = true
+	$AutoClickDetectionTimer.start()
 	
 	#print("Prestige Weight: ", Global.prestige_weight)
 	print("Prestige Progress: ", Global.prestige_progress)
@@ -225,3 +237,13 @@ func _on_player_name_button_pressed() -> void:
 
 func _on_version_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/changelog_menu.tscn")
+
+
+func _on_auto_click_detection_timer_timeout() -> void:
+	in_auto_clicker_detection_time_zone = false
+
+
+func _on_button_accept_auto_clicker_warning_pressed() -> void:
+	%PanelAutoClickerDetected.hide()
+	if Global.auto_clicker_strikes <= 0:
+		Global.auto_clicker_strikes = 3

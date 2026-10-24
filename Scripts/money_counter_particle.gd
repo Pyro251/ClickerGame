@@ -7,5 +7,5 @@ var clicks: int = 0
 
 
 func _ready() -> void:
-	amount_label.text = str(clicks)
+	amount_label.text = Global.simplify_number(clicks)
 	particles.emitting = true

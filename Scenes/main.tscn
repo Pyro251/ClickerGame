@@ -62,6 +62,28 @@ font_size = 40
 [sub_resource type="Theme" id="Theme_s1fef"]
 default_font_size = 76
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1fef"]
+bg_color = Color(0.19793722, 0.19793725, 0.19793713, 1)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 75
+border_color = Color(0.017732387, 0.017732397, 0.017732365, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 106
+
+[sub_resource type="LabelSettings" id="LabelSettings_qsuaf"]
+font = ExtResource("5_344ge")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_wb4oo"]
+font_size = 55
+font_color = Color(0.743272, 0.34721744, 0.32191327, 1)
+
 [node name="Main" type="Control" unique_id=1713389506]
 layout_mode = 3
 anchors_preset = 15
@@ -108,13 +130,6 @@ offset_right = -0.20007324
 offset_bottom = 242.10803
 theme_override_styles/panel = ExtResource("5_6iyac")
 script = ExtResource("5_fdnlq")
-
-[node name="GuiTransition" type="Node" parent="." unique_id=1131995483]
-script = ExtResource("2_jjvhh")
-auto_start = 1
-duration = 0.21
-layout = NodePath("..")
-metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="PlayerNameLabel" type="Label" parent="." unique_id=987146769]
 visible = false
@@ -372,10 +387,14 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
-text = "v1.0.8"
+text = "v1.1.0"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
+one_shot = true
+
+[node name="AutoClickDetectionTimer" type="Timer" parent="." unique_id=1428204963]
+wait_time = 0.05
 one_shot = true
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1136427966]
@@ -390,6 +409,86 @@ offset_top = 29.0
 offset_right = 73.0
 offset_bottom = 96.0
 
+[node name="PanelAutoClickerDetected" type="Panel" parent="." unique_id=770252243]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.069000006
+anchor_top = 0.125
+anchor_right = 0.93700004
+anchor_bottom = 0.689
+offset_left = 0.31999588
+offset_top = 0.5
+offset_right = 0.35998535
+offset_bottom = -0.060058594
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1fef")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelAutoClickerDetected" unique_id=7010730]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelAutoClickerDetected/MarginContainer" unique_id=1815836621]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=147421281]
+layout_mode = 2
+text = "Auto Clicker Detected!"
+label_settings = SubResource("LabelSettings_qsuaf")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=179892367]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "You just got caught lol.... If you think we got it wrong, you can send us feedback via our 'Feedback Menu' in the settings. After three times, we'll take away 50% of your money."
+
+[node name="LabelStrikes" type="Label" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=711366624]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2 Strikes left"
+label_settings = SubResource("LabelSettings_wb4oo")
+horizontal_alignment = 1
+
+[node name="ButtonAcceptAutoClickerWarning" type="Button" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=2002605222]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "Ok"
+
+[node name="GuiTransition" type="Node" parent="." unique_id=1131995483]
+script = ExtResource("2_jjvhh")
+auto_start = 1
+duration = 0.21
+layout = NodePath("..")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransition2" type="Node" parent="." unique_id=1131709624]
+script = ExtResource("2_jjvhh")
+duration = 0.25
+layout = NodePath("../ClickButton")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransition3" type="Node" parent="." unique_id=1920944263]
+script = ExtResource("2_jjvhh")
+animation_enter = 3
+animation_leave = 3
+duration = 0.25
+delay = 0.15
+layout = NodePath("..")
+group = NodePath("../VBoxContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
 [connection signal="pressed" from="PlayerNameButton" to="." method="_on_player_name_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ClickButton" to="." method="_on_click_button_pressed"]
@@ -398,3 +497,5 @@ offset_bottom = 96.0
 [connection signal="pressed" from="VBoxContainer/ManuelSaveButton" to="." method="_on_manuel_save_button_pressed"]
 [connection signal="pressed" from="VersionButton" to="." method="_on_version_button_pressed"]
 [connection signal="timeout" from="GameSavedTimer" to="." method="_on_game_saved_timer_timeout"]
+[connection signal="timeout" from="AutoClickDetectionTimer" to="." method="_on_auto_click_detection_timer_timeout"]
+[connection signal="pressed" from="PanelAutoClickerDetected/MarginContainer/VBoxContainer/ButtonAcceptAutoClickerWarning" to="." method="_on_button_accept_auto_clicker_warning_pressed"]

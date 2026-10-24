@@ -21,6 +21,7 @@ const SMALL_BUTTON_SOUND = preload("res://Scenes/small_button_sound.tscn")
 
 @export_multiline var custom_description: String = ""
 
+var in_auto_clicker_detection_time_zone: bool = false
 
 func _ready() -> void:
 	mouse_entered.connect(_button_enter)
@@ -30,16 +31,16 @@ func _ready() -> void:
 	refresh_theme()
 	
 	title_label.text = title
-	cost_label.text = str(cost, "$")
+	cost_label.text = Global.simplify_number(cost)
 	if !custom_description == "":
 		description_rich_text_label.text = custom_description
 	else:
 		description_rich_text_label.text = str("+ ", cps, " Clicks Per Second")
 	
 	if !Global.owned_items.has(title):
-		Global.owned_items.get_or_add(title, 1)
+		Global.owned_items.get_or_add(title, 0)
 	else:
-		Global.owned_items[title] += 1
+		Global.owned_items[title] += 0
 	
 	
 	owned_amount_label.text = str("Owned: ", int(Global.owned_items[title]))
@@ -120,3 +121,20 @@ func _button_pressed():
 		var new_small_button_sound = SMALL_BUTTON_SOUND.instantiate()
 		#new_small_button_sound.play()
 		add_child(new_small_button_sound)
+	
+	# Auto clicker detection
+	
+	if in_auto_clicker_detection_time_zone:
+		Global.show_shop_auto_clicker_detection.emit()
+		Global.auto_clicker_strikes -= 1
+		
+		if Global.auto_clicker_strikes <= 0:
+			# Takes away half of your money
+			Global.total_clicks -= (Global.total_clicks / 4) * 2
+	
+	in_auto_clicker_detection_time_zone = true
+	$AutoClickDetectionTimer.start()
+
+
+func _on_auto_click_detection_timer_timeout() -> void:
+	in_auto_clicker_detection_time_zone = false

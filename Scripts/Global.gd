@@ -6,6 +6,7 @@ signal game_saved
 signal update_selected_theme
 signal refresh_theme
 signal update_money_label
+signal show_shop_auto_clicker_detection
 
 const lboard_name: String = "clicker_game_lboard"
 
@@ -31,6 +32,8 @@ var save_name: String = "save_name"
 var owned_items: Dictionary = {}
 var owned_themes: Dictionary = {}
 var selected_theme: Dictionary = {}
+
+var auto_clicker_strikes: int = 3
 
 func _ready() -> void:
 	
@@ -74,6 +77,8 @@ func save_game():
 	print("game saved")
 	await update_leaderboard()
 	
+	print("Owned Items: ", Talo.current_player.get_prop("owned_items"))
+	
 	game_saved.emit()
 
 func load_game():
@@ -110,7 +115,7 @@ func simplify_number(number: int):
 		new_number = str(number / 1000000, "M")
 	elif number > 1000000000 and number < 1000000000000:
 		new_number = str(number / 1000000000, "B")
-	elif number > 1000000000000 and number < 1000000000000000:
+	elif number > 100000000000 and number < 1000000000000000:
 		new_number = str(number / 1000000000000, "T")
 	#elif number > 1000000000000000 and number < 1000000000000000000:
 		#new_number = str(number / 1000000000000000, "Qa")

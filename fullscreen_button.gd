@@ -12,7 +12,7 @@ func _on_pressed() -> void:
 		texture_normal = MAXIMIZE_ICON
 		texture_hover = MAXIMIZE_ICON
 		texture_pressed = MAXIMIZE_ICON
-	else:
+	elif current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		texture_normal = MINIMIZED_ICON
 		texture_hover = MINIMIZED_ICON

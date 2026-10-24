@@ -117,7 +117,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 35
 
-[node name="ChangelogElement4" parent="VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+[node name="ChangelogElement5" parent="VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.1.0"
+version_description = "- Added an auto clicker anti-cheat system
+- Improved number abreviation consistancy
+- Added many new items to the shop
+- Improved the shop screen
+- Added UI transitions"
+
+[node name="ChangelogElement4" parent="VBoxContainer" unique_id=2033309693 instance=ExtResource("7_auxqp")]
 layout_mode = 2
 version = "v1.0.8"
 version_description = "- Fixed and improved changelog menu
