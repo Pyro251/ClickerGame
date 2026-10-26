@@ -117,8 +117,8 @@ func simplify_number(number: int):
 		new_number = str(number / 1000000000, "B")
 	elif number > 100000000000 and number < 1000000000000000:
 		new_number = str(number / 1000000000000, "T")
-	#elif number > 1000000000000000 and number < 1000000000000000000:
-		#new_number = str(number / 1000000000000000, "Qa")
+	elif number > 1000000000000000 and number < 1000000000000000000:
+		new_number = str(number / 1000000000000000, "Qa")
 	#elif number > 1000000000000000000 and number < 1000000000000000000000:
 		#new_number = str(number / 1000000000000000000, "Qi")
 	else:

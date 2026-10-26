@@ -41,9 +41,9 @@ tracks/1/path = NodePath(".:custom_minimum_size:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.00016666668, 0, 0, -0.00016666668, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -52,9 +52,9 @@ tracks/2/path = NodePath(".:custom_minimum_size:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(70, 0, 0, 0.00016666668, 1.6666667, 80, -0.00016666668, -5, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 
 [sub_resource type="Animation" id="Animation_csf7o"]
@@ -78,8 +78,8 @@ tracks/1/path = NodePath(".:custom_minimum_size:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.075, 0, 0.075, 0, 0, -0.025000002, 0, 0, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.025000002, 0, 0, -0.025000002, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.15)
 }
 tracks/2/type = "bezier"
@@ -89,8 +89,8 @@ tracks/2/path = NodePath(".:custom_minimum_size:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(50, -0.075, 0, 0.075, 0, 300, -0.025000002, -41.666668, 0, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(70, 0, 0, 0.025000002, 38.333336, 300, -0.025000002, -41.666668, 0, 0),
 "times": PackedFloat32Array(0, 0.15)
 }
 
@@ -127,7 +127,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(300, -0.075, 0, 0.075, 0, 50, -0.025000002, 41.666668, 0, 0),
+"points": PackedFloat32Array(300, -0.075, 0, 0.075, 0, 70, -0.025000002, 38.333336, 0, 0),
 "times": PackedFloat32Array(0, 0.15)
 }
 
@@ -139,9 +139,9 @@ _data = {
 }
 
 [node name="ChangelogElement" type="Panel" unique_id=1520556494]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 70)
 offset_right = 718.0
-offset_bottom = 50.0
+offset_bottom = 70.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ppav")
 script = ExtResource("1_w0sdx")
 
