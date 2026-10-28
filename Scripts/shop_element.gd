@@ -35,7 +35,7 @@ func _ready() -> void:
 	if !custom_description == "":
 		description_rich_text_label.text = custom_description
 	else:
-		description_rich_text_label.text = str("+ ", cps, " Clicks Per Second")
+		description_rich_text_label.text = str("+", Global.simplify_number(cps), " Per Second")
 	
 	if !Global.owned_items.has(title):
 		Global.owned_items.get_or_add(title, 0)

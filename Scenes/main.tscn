@@ -387,14 +387,14 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
-text = "v1.1.1"
+text = "v1.1.2"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
 one_shot = true
 
 [node name="AutoClickDetectionTimer" type="Timer" parent="." unique_id=1428204963]
-wait_time = 0.030000000000000002
+wait_time = 0.03
 one_shot = true
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1136427966]

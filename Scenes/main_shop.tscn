@@ -169,126 +169,108 @@ layout_mode = 2
 cost = 200
 cps = 2
 title = "Tiny Clicker"
-custom_description = "Increases clicks per second by 2"
 
 [node name="ShopElementTemplate3" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1000
 cps = 15
 title = "Small Clicker"
-custom_description = "Increases clicks per second by 15"
 
 [node name="ShopElementTemplate4" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 2500
 cps = 50
 title = "Medium Clicker"
-custom_description = "Increases clicks per second by 50"
 
 [node name="ShopElementTemplate5" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=228609207 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 7000
 cps = 150
 title = "Slightly Less Mediocre Clicker"
-custom_description = "Increases clicks per second by 150"
 
 [node name="ShopElementTemplate6" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=720161052 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 13000
 cps = 300
 title = "Kinda Mediocre Clicker"
-custom_description = "Increases clicks per second by 300"
 
 [node name="ShopElementTemplate7" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1894088417 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 24000
 cps = 600
 title = "Ok Clicker"
-custom_description = "Increases clicks per second by 600"
 
 [node name="ShopElementTemplate8" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=172150125 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 40000
 cps = 1200
 title = "Good Clicker"
-custom_description = "Increases clicks per second by 1,200"
 
 [node name="ShopElementTemplate9" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 75000
 cps = 2400
 title = "Better Clicker"
-custom_description = "Increases clicks per second by 2,400"
 
 [node name="ShopElementTemplate10" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 140000
 cps = 5000
 title = "A Little Bit Better Clicker"
-custom_description = "Increases clicks per second by 5,000"
 
 [node name="ShopElementTemplate11" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 250000
 cps = 10000
 title = "Better Better Clicker"
-custom_description = "Increases clicks per second by 10,000"
 
 [node name="ShopElementTemplate12" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1365577524 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 600000
 cps = 30000
 title = "Great Clicker"
-custom_description = "Increases clicks per second by 30,000"
 
 [node name="ShopElementTemplate13" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=995338594 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 10000000
 cps = 600000
 title = "Greater Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate14" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1885527661 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 150000000
 cps = 5000000
 title = "Fantastic Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate15" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=737113282 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 750000000
 cps = 20000000
 title = "Very Fantastic Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate16" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=599967049 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1500000000
 cps = 70000000
 title = "Ultra Fantastic Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate17" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=43612061 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 10000000000
 cps = 700000000
 title = "Ultra Fantastic Premium Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate18" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1828941593 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 100000000000
 cps = 1000000000
 title = "Ultra Fantastic Premium Plus Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="ShopElementTemplate19" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=803038963 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1000000000000
 cps = 10000000000
 title = "Mega Clicker"
-custom_description = "Increases clicks per second by 60,000"
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
 layout_mode = 1

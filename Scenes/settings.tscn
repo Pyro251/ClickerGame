@@ -19,6 +19,40 @@ shadow_size = 56
 [sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
 font_size = 65
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ppav"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7vst"]
+bg_color = Color(0.2231029, 0.2231029, 0.22310278, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+expand_margin_bottom = 100.0
+shadow_color = Color(0, 0, 0, 0.22745098)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35cvv"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+expand_margin_bottom = 100.0
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxpc5"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+expand_margin_bottom = 100.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1fef"]
 bg_color = Color(0.8, 0.8352941, 0.68235296, 1)
 corner_radius_top_left = 60
@@ -72,7 +106,7 @@ animation_enter = 0
 duration = 0.5
 delay = 0.22
 layout = NodePath("..")
-group = NodePath("../SettingsPanel/MarginContainer/VBoxContainer")
+group = NodePath("../TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer")
 metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="GuiTransition2" type="Node" parent="." unique_id=159709197]
@@ -80,7 +114,7 @@ script = ExtResource("2_aaqfp")
 animation_enter = 2
 duration = 0.5
 layout = NodePath("..")
-group = NodePath("../SettingsPanel")
+group = NodePath("../TabContainer/SettingsPanelAccount")
 metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="Title" type="Label" parent="." unique_id=1799949002]
@@ -111,23 +145,37 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("5_j2dne")
 
-[node name="SettingsPanel" type="Panel" parent="." unique_id=1749697864]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1520280903]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.058000002
-anchor_top = 0.179
-anchor_right = 0.92100006
-anchor_bottom = 0.77400005
-offset_left = 0.23999786
-offset_top = -0.66000366
-offset_right = -0.12005615
-offset_bottom = 0.039916992
+anchor_left = 0.062000003
+anchor_top = 0.17600001
+anchor_right = 0.924
+anchor_bottom = 0.78200006
+offset_left = -5.640003
+offset_top = -0.040008545
+offset_right = -0.2800293
+offset_bottom = -0.28015137
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/side_margin = 20
+theme_override_constants/tab_separation = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ppav")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_l7vst")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_35cvv")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_nxpc5")
+current_tab = 0
+tab_0/title = "Graphics"
+tab_1/title = "Account"
+
+[node name="SettingsPanelGraphics" type="Panel" parent="TabContainer" unique_id=604809877]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s1fef")
 script = ExtResource("4_35cvv")
+metadata/_tab_index = 0
+metadata/_tab_name = "Graphics"
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel" unique_id=100585250]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SettingsPanelGraphics" unique_id=5115913]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,12 +187,48 @@ offset_bottom = -86.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/MarginContainer" unique_id=882881526]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SettingsPanelGraphics/MarginContainer" unique_id=1214703886]
 layout_mode = 2
 theme = SubResource("Theme_s1fef")
 theme_override_constants/separation = 28
 
-[node name="SignOutButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=541515138]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/SettingsPanelGraphics/MarginContainer/VBoxContainer" unique_id=1573412906]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/SettingsPanelGraphics/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1520866572]
+layout_mode = 2
+text = "Clean clicker button"
+
+[node name="CheckBoxCleanClickerButton" type="CheckBox" parent="TabContainer/SettingsPanelGraphics/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1210191545]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SettingsPanelAccount" type="Panel" parent="TabContainer" unique_id=1749697864]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s1fef")
+script = ExtResource("4_35cvv")
+metadata/_tab_index = 1
+metadata/_tab_name = "Account"
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SettingsPanelAccount" unique_id=100585250]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 62.0
+offset_right = -54.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SettingsPanelAccount/MarginContainer" unique_id=882881526]
+layout_mode = 2
+theme = SubResource("Theme_s1fef")
+theme_override_constants/separation = 28
+
+[node name="SignOutButton" type="Button" parent="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer" unique_id=541515138]
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -158,7 +242,7 @@ theme_override_styles/hover = ExtResource("7_rgw85")
 text = "Sign Out"
 script = ExtResource("3_aaqfp")
 
-[node name="DeleteAccountButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=341791939]
+[node name="DeleteAccountButton" type="Button" parent="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer" unique_id=341791939]
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -173,7 +257,7 @@ disabled = true
 text = "Delete Account"
 script = ExtResource("3_aaqfp")
 
-[node name="ResetPasswordButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=690201958]
+[node name="ResetPasswordButton" type="Button" parent="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer" unique_id=690201958]
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -188,7 +272,7 @@ disabled = true
 text = "Reset Password"
 script = ExtResource("3_aaqfp")
 
-[node name="SendFeedbackButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer" unique_id=1923821200]
+[node name="SendFeedbackButton" type="Button" parent="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer" unique_id=1923821200]
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -203,5 +287,6 @@ text = "Send Feedback"
 script = ExtResource("3_aaqfp")
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="SettingsPanel/MarginContainer/VBoxContainer/SignOutButton" to="." method="_on_sign_out_button_pressed"]
-[connection signal="pressed" from="SettingsPanel/MarginContainer/VBoxContainer/SendFeedbackButton" to="." method="_on_send_feedback_button_pressed"]
+[connection signal="pressed" from="TabContainer/SettingsPanelGraphics/MarginContainer/VBoxContainer/HBoxContainer/CheckBoxCleanClickerButton" to="." method="_on_check_box_clean_clicker_button_pressed"]
+[connection signal="pressed" from="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer/SignOutButton" to="." method="_on_sign_out_button_pressed"]
+[connection signal="pressed" from="TabContainer/SettingsPanelAccount/MarginContainer/VBoxContainer/SendFeedbackButton" to="." method="_on_send_feedback_button_pressed"]

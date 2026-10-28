@@ -133,7 +133,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 35
 
-[node name="ChangelogElement6" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+[node name="ChangelogElement7" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.1.2"
+version_description = "- Added 'Ocean Breeze' theme to the theme shop
+- Shop items now show how much money per second you get
+- Updated the settings menu, and gave it a new 'clean clicker button' option"
+
+[node name="ChangelogElement6" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=808427892 instance=ExtResource("7_auxqp")]
 layout_mode = 2
 version = "v1.1.1"
 version_description = "- Improved auto-clicker detection

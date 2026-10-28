@@ -118,6 +118,17 @@ main_color = Color(0.8200051, 0.93128675, 0.9209111, 1)
 accent_color = Color(0.6440682, 0.85957915, 0.8222257, 1)
 button_color = Color(0.85813224, 0.92619526, 0.90993536, 1)
 
+[node name="ThemeElement5" parent="ScrollContainer/VBoxContainer" unique_id=1061706682 instance=ExtResource("3_gpay4")]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+use_small_button_sound = true
+title = "Ocean Breeze"
+cost = 15000
+main_color = Color(0.8997383, 0.862652, 0.825959, 1)
+accent_color = Color(0.32135382, 0.44765353, 0.48470867, 1)
+button_color = Color(0.600477, 0.75516444, 0.7136646, 1)
+
 [node name="BottomBackground" type="Panel" parent="." unique_id=669570321]
 layout_mode = 1
 anchors_preset = -1

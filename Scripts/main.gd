@@ -128,6 +128,11 @@ func _ready() -> void:
 	
 	Global.change_labels_font_color(self, Global.button_color)
 	clicks_label.add_theme_color_override("font_color", Color())
+	
+	if Global.clean_clicker_button:
+		add_click_button.text = ""
+	else:
+		add_click_button.text = "Click Here"
 
 
 

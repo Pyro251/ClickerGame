@@ -35,10 +35,11 @@ var selected_theme: Dictionary = {}
 
 var auto_clicker_strikes: int = 3
 
+var clean_clicker_button: bool = false
+
 func _ready() -> void:
 	
 	Global.timer.connect("timeout", on_global_timer_timeout)
-	
 	
 	make_global_timer(1, false)
 
