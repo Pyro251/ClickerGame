@@ -2,6 +2,8 @@ extends TaloLoadable
 
 const MONEY_COUNTER_PARTICLE = preload("res://Scenes/money_counter_particle.tscn")
 const PANEL_STYLES = preload("res://resources/Panels/top_panel.tres")
+const SIMPLE_ARROW_UP = preload("uid://6qir3tpi55sp")
+const SIMPLE_ARROW_DOWN = preload("uid://psgjpf7a6c1o")
 
 @onready var player_name_label: Label = $PlayerNameLabel
 @onready var clicks_label: Label = $TotalClicksLabel
@@ -19,6 +21,7 @@ const PANEL_STYLES = preload("res://resources/Panels/top_panel.tres")
 @onready var bottom_background: Panel = $BottomBackground
 
 var in_auto_clicker_detection_time_zone: bool = false
+var bottom_menu_collapsed: bool = false
 
 func _ready() -> void:
 	
@@ -69,6 +72,7 @@ func _ready() -> void:
 	Global.money_multiplier = int(Talo.current_player.get_prop("money_multiplier"))
 	Global.clicks_per_second = int(Talo.current_player.get_prop("clicks_per_second"))
 	
+	%ButtonCollapseExpandBottomMenu.pressed.connect(collapse_or_expand_bottom_menu)
 	
 	var main_raw_color_string = Talo.current_player.get_prop("main_color")
 	var main_parsed_color: Color = Global.main_color
@@ -207,6 +211,18 @@ func _on_click_button_pressed() -> void:
 	print("Prestige Progress: ", Global.prestige_progress)
 	print("Total clicks: ", Global.total_clicks)
 
+func collapse_or_expand_bottom_menu():
+	if bottom_menu_collapsed:
+		GuiTransitions.show("BottomPanel")
+		%ButtonCollapseExpandBottomMenu.icon = SIMPLE_ARROW_DOWN
+		%AnimationPlayerCollapseButton.play("up")
+	else:
+		GuiTransitions.hide("BottomPanel")
+		%ButtonCollapseExpandBottomMenu.icon = SIMPLE_ARROW_UP
+		%AnimationPlayerCollapseButton.play("down")
+	bottom_menu_collapsed = !bottom_menu_collapsed
+	
+	
 
 
 func _on_manuel_save_button_pressed() -> void:

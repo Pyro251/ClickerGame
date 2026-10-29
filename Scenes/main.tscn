@@ -14,6 +14,7 @@
 [ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="8_6iyac"]
 [ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="9_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://bjqitofvubrm3" path="res://Scenes/fullscreen_button.tscn" id="14_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://psgjpf7a6c1o" path="res://assets/CleanIconPack/simple_arrow_down.png" id="15_wsu2k"]
 
 [sub_resource type="Theme" id="Theme_344ge"]
 default_font = ExtResource("5_344ge")
@@ -83,6 +84,90 @@ font_size = 45
 [sub_resource type="LabelSettings" id="LabelSettings_wb4oo"]
 font_size = 55
 font_color = Color(0.743272, 0.34721744, 0.32191327, 1)
+
+[sub_resource type="Animation" id="Animation_wsu2k"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%ButtonCollapseExpandBottomMenu:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(307, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ButtonCollapseExpandBottomMenu:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(998, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_k12tt"]
+resource_name = "down"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("%ButtonCollapseExpandBottomMenu:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(307, -0.15, 0, 0.15, 0, 307, -0.050000004, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ButtonCollapseExpandBottomMenu:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(998, -0.15, 0, 0.15, 0, 1374, -0.050000004, -62.666668, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_h1bgf"]
+resource_name = "up"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("%ButtonCollapseExpandBottomMenu:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(307, 0, 0, 0.050000004, 0, 307, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%ButtonCollapseExpandBottomMenu:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(1382, 0, 0, 0.050000004, -64.00001, 998, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3802"]
+_data = {
+&"RESET": SubResource("Animation_wsu2k"),
+&"down": SubResource("Animation_k12tt"),
+&"up": SubResource("Animation_h1bgf")
+}
 
 [node name="Main" type="Control" unique_id=1713389506]
 layout_mode = 3
@@ -387,14 +472,14 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_khhxn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_khhxn")
-text = "v1.1.2"
+text = "v1.1.3"
 
 [node name="GameSavedTimer" type="Timer" parent="." unique_id=183514942]
 wait_time = 3.0
 one_shot = true
 
 [node name="AutoClickDetectionTimer" type="Timer" parent="." unique_id=1428204963]
-wait_time = 0.03
+wait_time = 0.003
 one_shot = true
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1136427966]
@@ -488,6 +573,41 @@ delay = 0.15
 layout = NodePath("..")
 group = NodePath("../VBoxContainer")
 metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransitionBottomMenuDown" type="Node" parent="." unique_id=1687162622]
+unique_name_in_owner = true
+script = ExtResource("2_jjvhh")
+auto_start = 0
+fade_layout = 0
+animation_enter = 3
+animation_leave = 3
+delay = 0.15
+layout = NodePath("../VBoxContainer")
+layout_id = "BottomPanel"
+group = NodePath("../VBoxContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="ButtonCollapseExpandBottomMenu" type="Button" parent="." unique_id=289987644]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50100005
+anchor_top = 0.683
+anchor_right = 0.50100005
+anchor_bottom = 0.683
+offset_left = -53.72003
+offset_top = -53.82007
+offset_right = 54.27997
+offset_bottom = 54.17993
+theme_override_constants/icon_max_width = 100
+icon = ExtResource("15_wsu2k")
+flat = true
+script = ExtResource("4_21xkr")
+
+[node name="AnimationPlayerCollapseButton" type="AnimationPlayer" parent="." unique_id=1038279068]
+unique_name_in_owner = true
+root_node = NodePath("../GuiTransitionBottomMenuDown")
+libraries/ = SubResource("AnimationLibrary_b3802")
 
 [connection signal="pressed" from="PlayerNameButton" to="." method="_on_player_name_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
