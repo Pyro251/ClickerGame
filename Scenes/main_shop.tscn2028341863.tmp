@@ -1,0 +1,392 @@
+[gd_scene format=3 uid="uid://cl0cf8egqb07u"]
+
+[ext_resource type="FontFile" uid="uid://b4hjttcywkeni" path="res://assets/Fonts/static/Fredoka-Medium.ttf" id="1_3l8r3"]
+[ext_resource type="Script" uid="uid://bu6qrtmlvcs1e" path="res://Scripts/main_shop.gd" id="1_i5bce"]
+[ext_resource type="PackedScene" uid="uid://igrb4x4cq8ik" path="res://Scenes/back_button.tscn" id="2_s3uku"]
+[ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="3_5p6es"]
+[ext_resource type="Texture2D" uid="uid://dj13h785h4nrg" path="res://assets/icons/clker-free-vector-images-paint-29344_1920.png" id="4_3h7jy"]
+[ext_resource type="Script" uid="uid://pm5g2q3ven8r" path="res://Scripts/background.gd" id="4_jtugg"]
+[ext_resource type="StyleBox" uid="uid://bwcakgkog6xcn" path="res://resources/ButtonStyles/Normal/normal.tres" id="4_vug5v"]
+[ext_resource type="Script" uid="uid://csxwm1367ohuc" path="res://Scripts/texture_button.gd" id="5_0uhpj"]
+[ext_resource type="StyleBox" uid="uid://dwluwy4s1nuc" path="res://resources/ButtonStyles/Normal/pressed.tres" id="5_52qyv"]
+[ext_resource type="Script" uid="uid://b76ny2bhwfcn7" path="res://Scripts/accent_panel.gd" id="5_s5mxc"]
+[ext_resource type="StyleBox" uid="uid://bwegbj8r34hi8" path="res://resources/ButtonStyles/Normal/hover.tres" id="6_j7idd"]
+[ext_resource type="PackedScene" uid="uid://m5ttbtkxvuw" path="res://Scenes/shop_element_template.tscn" id="7_52qyv"]
+[ext_resource type="Script" uid="uid://3dgjci1761wq" path="res://Scripts/Button.gd" id="8_j7idd"]
+
+[sub_resource type="Theme" id="Theme_s1fef"]
+default_font = ExtResource("1_3l8r3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3uku"]
+bg_color = Color(0.83137256, 0.6392157, 0.4509804, 1)
+shadow_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5bce"]
+font = ExtResource("1_3l8r3")
+font_size = 87
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtugg"]
+bg_color = Color(0.19793722, 0.19793725, 0.19793713, 1)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 75
+border_color = Color(0.017732387, 0.017732397, 0.017732365, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 106
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5mxc"]
+font = ExtResource("1_3l8r3")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_yg1f2"]
+font_size = 55
+font_color = Color(0.743272, 0.34721744, 0.32191327, 1)
+
+[node name="MainShop" type="Control" unique_id=933073618]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s1fef")
+script = ExtResource("1_i5bce")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=396379366]
+visible = false
+layout_mode = 0
+offset_left = 16.999998
+offset_top = 183.0
+offset_right = 317.0
+offset_bottom = 6263.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="GuiTransition" type="Node" parent="." unique_id=623509313]
+script = ExtResource("3_5p6es")
+layout = NodePath("..")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="GuiTransition2" type="Node" parent="." unique_id=366419573]
+script = ExtResource("3_5p6es")
+animation_enter = 3
+duration = 0.69
+layout = NodePath("..")
+group = NodePath("../GridContainer")
+metadata/_custom_type_script = "uid://bimelmc1ce1b2"
+
+[node name="BG" type="ColorRect" parent="." unique_id=1776494938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98039216, 0.92941177, 0.8039216, 1)
+script = ExtResource("4_jtugg")
+
+[node name="TopBackground" type="Panel" parent="." unique_id=1134371830]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.09200001
+offset_left = -78.0
+offset_top = -49.0
+offset_right = 70.0
+offset_bottom = 0.31999207
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
+script = ExtResource("5_s5mxc")
+
+[node name="MoneyLabel" type="Label" parent="TopBackground" unique_id=1896522447]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.335
+anchor_right = 0.65300006
+anchor_bottom = 0.89000005
+offset_left = -0.1960144
+offset_top = 0.01499939
+offset_right = 0.19592285
+offset_bottom = 0.009994507
+grow_horizontal = 2
+text = "####"
+label_settings = SubResource("LabelSettings_i5bce")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThemeTextureButton" type="TextureButton" parent="." unique_id=1929075021]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96700007
+anchor_top = 0.012
+anchor_right = 0.96700007
+anchor_bottom = 0.012
+offset_left = -82.24005
+offset_top = -0.47999954
+offset_right = -0.24005127
+offset_bottom = 102.691696
+texture_normal = ExtResource("4_3h7jy")
+texture_pressed = ExtResource("4_3h7jy")
+texture_hover = ExtResource("4_3h7jy")
+texture_disabled = ExtResource("4_3h7jy")
+texture_focused = ExtResource("4_3h7jy")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("5_0uhpj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1495629705]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.13100001
+anchor_right = 0.9760001
+anchor_bottom = 0.85300004
+offset_left = -51.08
+offset_top = -58.74002
+offset_right = 12.279968
+offset_bottom = 9.379883
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=1710939178]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=1121691144]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ShopElementTemplate2" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=86724086 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 200
+cps = 2
+title = "Tiny Clicker"
+
+[node name="ShopElementTemplate3" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 1000
+cps = 15
+title = "Small Clicker"
+
+[node name="ShopElementTemplate4" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 2500
+cps = 50
+title = "Medium Clicker"
+
+[node name="ShopElementTemplate5" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=228609207 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 7000
+cps = 150
+title = "Slightly Less Mediocre Clicker"
+
+[node name="ShopElementTemplate6" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=720161052 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 13000
+cps = 300
+title = "Kinda Mediocre Clicker"
+
+[node name="ShopElementTemplate7" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1894088417 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 24000
+cps = 600
+title = "Ok Clicker"
+
+[node name="ShopElementTemplate8" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=172150125 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 40000
+cps = 1200
+title = "Good Clicker"
+
+[node name="ShopElementTemplate9" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 75000
+cps = 2400
+title = "Better Clicker"
+
+[node name="ShopElementTemplate10" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 140000
+cps = 5000
+title = "A Little Bit Better Clicker"
+
+[node name="ShopElementTemplate11" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 250000
+cps = 10000
+title = "Better Better Clicker"
+
+[node name="ShopElementTemplate12" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1365577524 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 600000
+cps = 30000
+title = "Great Clicker"
+
+[node name="ShopElementTemplate13" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=995338594 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 10000000
+cps = 600000
+title = "Greater Clicker"
+
+[node name="ShopElementTemplate14" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1885527661 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 150000000
+cps = 5000000
+title = "Fantastic Clicker"
+
+[node name="ShopElementTemplate15" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=737113282 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 750000000
+cps = 20000000
+title = "Very Fantastic Clicker"
+
+[node name="ShopElementTemplate16" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=599967049 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 1500000000
+cps = 70000000
+title = "Ultra Fantastic Clicker"
+
+[node name="ShopElementTemplate17" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=43612061 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 10000000000
+cps = 700000000
+title = "Ultra Fantastic Premium Clicker"
+
+[node name="ShopElementTemplate18" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1828941593 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 100000000000
+cps = 1000000000
+title = "Ultra Fantastic Premium Plus Clicker"
+
+[node name="ShopElementTemplate19" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=803038963 instance=ExtResource("7_52qyv")]
+layout_mode = 2
+cost = 1000000000000
+cps = 10000000000
+title = "Mega Clicker"
+
+[node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.86300004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -0.020019531
+offset_right = 70.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
+script = ExtResource("5_s5mxc")
+
+[node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_s3uku")]
+z_index = 1
+layout_mode = 0
+offset_left = 19.0
+offset_top = 25.0
+offset_right = 119.0
+offset_bottom = 125.0
+scene_path = "uid://1ko13v6hoo2e"
+
+[node name="PrestigeButton" type="Button" parent="." unique_id=884240514]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.053000003
+anchor_top = 0.882
+anchor_right = 0.93200004
+anchor_bottom = 0.98100007
+offset_left = -0.16000366
+offset_top = -0.2800293
+offset_right = -0.040039063
+offset_bottom = -0.7401123
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("4_vug5v")
+theme_override_styles/pressed = ExtResource("5_52qyv")
+theme_override_styles/hover = ExtResource("6_j7idd")
+text = "Prestige"
+script = ExtResource("8_j7idd")
+use_small_button_sound = true
+
+[node name="PanelAutoClickerDetected" type="Panel" parent="." unique_id=612334849]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.069000006
+anchor_top = 0.125
+anchor_right = 0.93700004
+anchor_bottom = 0.689
+offset_left = 0.31999588
+offset_top = 0.5
+offset_right = 0.35998535
+offset_bottom = -0.060058594
+theme_override_styles/panel = SubResource("StyleBoxFlat_jtugg")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelAutoClickerDetected" unique_id=1425888404]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelAutoClickerDetected/MarginContainer" unique_id=595663955]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=999387492]
+layout_mode = 2
+text = "Auto Clicker Detected!"
+label_settings = SubResource("LabelSettings_s5mxc")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=730158235]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "You just got caught lol.... If you think we got it wrong, you can send us feedback via our 'Feedback Menu' in the settings. After three times, we'll take away 50% of your money."
+
+[node name="LabelStrikes" type="Label" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=882500829]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2 Strikes left"
+label_settings = SubResource("LabelSettings_yg1f2")
+horizontal_alignment = 1
+
+[node name="ButtonAcceptAutoClickerWarning" type="Button" parent="PanelAutoClickerDetected/MarginContainer/VBoxContainer" unique_id=257417543]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "Ok"
+
+[connection signal="pressed" from="ThemeTextureButton" to="." method="_on_theme_texture_button_pressed"]
+[connection signal="pressed" from="PrestigeButton" to="." method="_on_prestige_button_pressed"]
+[connection signal="pressed" from="PanelAutoClickerDetected/MarginContainer/VBoxContainer/ButtonAcceptAutoClickerWarning" to="." method="_on_button_accept_auto_clicker_warning_pressed"]

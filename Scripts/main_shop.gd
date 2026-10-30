@@ -1,7 +1,7 @@
 extends Control
 
 @onready var money_label: Label = $TopBackground/MoneyLabel
-@onready var grid_container: GridContainer = $ScrollContainer/MarginContainer/GridContainer
+#@onready var grid_container: GridContainer = $ScrollContainer/MarginContainer/GridContainer
 @onready var shop_element: Button = $ScrollContainer/MarginContainer/GridContainer/ShopElementTemplate2
 
 var spacing: float = 50.0
@@ -13,7 +13,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	money_label.text = Global.simplify_number(Global.total_clicks)
-	grid_container.columns = max(1, get_viewport_rect().size.x / (shop_element.size.x + spacing))
+	%LabelMoneyPerSecond.text = str("Money Per Second: ", Global.simplify_number(Global.clicks_per_second))
+	#grid_container.columns = max(1, get_viewport_rect().size.x / (shop_element.size.x + spacing))
+	
+	# old
 	#grid_container.columns = ceil(get_viewport_rect().size.x / shop_element.size.x)
 
 

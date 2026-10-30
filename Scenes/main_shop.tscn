@@ -26,6 +26,9 @@ font = ExtResource("1_3l8r3")
 font_size = 87
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_s1fef"]
+font_size = 58
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtugg"]
 bg_color = Color(0.19793722, 0.19793725, 0.19793713, 1)
 border_width_left = 25
@@ -58,6 +61,20 @@ grow_vertical = 2
 theme = SubResource("Theme_s1fef")
 script = ExtResource("1_i5bce")
 
+[node name="GridContainer" type="GridContainer" parent="." unique_id=396379366]
+visible = false
+layout_mode = 0
+offset_left = 16.999998
+offset_top = 183.0
+offset_right = 317.0
+offset_bottom = 6263.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
 [node name="GuiTransition" type="Node" parent="." unique_id=623509313]
 script = ExtResource("3_5p6es")
 layout = NodePath("..")
@@ -68,7 +85,7 @@ script = ExtResource("3_5p6es")
 animation_enter = 3
 duration = 0.69
 layout = NodePath("..")
-group = NodePath("../ScrollContainer/MarginContainer/GridContainer")
+group = NodePath("../GridContainer")
 metadata/_custom_type_script = "uid://bimelmc1ce1b2"
 
 [node name="BG" type="ColorRect" parent="." unique_id=1776494938]
@@ -144,135 +161,135 @@ anchor_bottom = 0.85300004
 offset_left = -51.08
 offset_top = -58.74002
 offset_right = 12.279968
-offset_bottom = 9.379883
+offset_bottom = -166.62012
+grow_horizontal = 2
+grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=1710939178]
 layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
-
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer" unique_id=396379366]
-layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-offset_transform_enabled = true
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
-columns = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 40
 
-[node name="ShopElementTemplate2" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=86724086 instance=ExtResource("7_52qyv")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=1121691144]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ShopElementTemplate2" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=86724086 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 200
 cps = 2
 title = "Tiny Clicker"
 
-[node name="ShopElementTemplate3" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate3" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=334355498 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1000
 cps = 15
 title = "Small Clicker"
 
-[node name="ShopElementTemplate4" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate4" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1095751338 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 2500
 cps = 50
 title = "Medium Clicker"
 
-[node name="ShopElementTemplate5" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=228609207 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate5" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=228609207 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 7000
 cps = 150
 title = "Slightly Less Mediocre Clicker"
 
-[node name="ShopElementTemplate6" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=720161052 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate6" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=720161052 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 13000
 cps = 300
 title = "Kinda Mediocre Clicker"
 
-[node name="ShopElementTemplate7" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1894088417 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate7" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1894088417 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 24000
 cps = 600
 title = "Ok Clicker"
 
-[node name="ShopElementTemplate8" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=172150125 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate8" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=172150125 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 40000
 cps = 1200
 title = "Good Clicker"
 
-[node name="ShopElementTemplate9" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate9" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=502650202 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 75000
 cps = 2400
 title = "Better Clicker"
 
-[node name="ShopElementTemplate10" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate10" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1802128614 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 140000
 cps = 5000
 title = "A Little Bit Better Clicker"
 
-[node name="ShopElementTemplate11" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate11" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1992707895 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 250000
 cps = 10000
 title = "Better Better Clicker"
 
-[node name="ShopElementTemplate12" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1365577524 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate12" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1365577524 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 600000
 cps = 30000
 title = "Great Clicker"
 
-[node name="ShopElementTemplate13" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=995338594 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate13" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=995338594 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 10000000
 cps = 600000
 title = "Greater Clicker"
 
-[node name="ShopElementTemplate14" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1885527661 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate14" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1885527661 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 150000000
 cps = 5000000
 title = "Fantastic Clicker"
 
-[node name="ShopElementTemplate15" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=737113282 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate15" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=737113282 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 750000000
 cps = 20000000
 title = "Very Fantastic Clicker"
 
-[node name="ShopElementTemplate16" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=599967049 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate16" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=599967049 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1500000000
 cps = 70000000
 title = "Ultra Fantastic Clicker"
 
-[node name="ShopElementTemplate17" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=43612061 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate17" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=43612061 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 10000000000
 cps = 700000000
 title = "Ultra Fantastic Premium Clicker"
 
-[node name="ShopElementTemplate18" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=1828941593 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate18" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1828941593 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 100000000000
 cps = 1000000000
 title = "Ultra Fantastic Premium Plus Clicker"
 
-[node name="ShopElementTemplate19" parent="ScrollContainer/MarginContainer/GridContainer" unique_id=803038963 instance=ExtResource("7_52qyv")]
+[node name="ShopElementTemplate19" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=803038963 instance=ExtResource("7_52qyv")]
 layout_mode = 2
 cost = 1000000000000
 cps = 10000000000
 title = "Mega Clicker"
 
 [node name="BottomBackground" type="Panel" parent="." unique_id=93715534]
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.86300004
@@ -285,6 +302,23 @@ offset_bottom = 18.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s3uku")
 script = ExtResource("5_s5mxc")
+
+[node name="LabelMoneyPerSecond" type="Label" parent="BottomBackground" unique_id=1918623240]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.141
+anchor_top = 0.201
+anchor_right = 0.88000005
+anchor_bottom = 0.777
+offset_left = -0.3880005
+offset_top = -0.028999329
+offset_right = 0.15997314
+offset_bottom = 0.06700134
+text = "$$ Per Second: ##"
+label_settings = SubResource("LabelSettings_s1fef")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BackButton" parent="." unique_id=1850235997 instance=ExtResource("2_s3uku")]
 z_index = 1
@@ -322,6 +356,7 @@ use_small_button_sound = true
 [node name="PanelAutoClickerDetected" type="Panel" parent="." unique_id=612334849]
 unique_name_in_owner = true
 visible = false
+z_index = 8
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.069000006
@@ -375,6 +410,76 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 54
 text = "Ok"
+
+[node name="PanelBuyButtons" type="Panel" parent="." unique_id=1411213972]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.094000004
+anchor_top = 0.74500006
+anchor_right = 0.90400004
+anchor_bottom = 0.96300006
+offset_left = 0.3199997
+offset_top = 0.6999512
+offset_right = 0.11999512
+offset_bottom = -0.020141602
+script = ExtResource("5_s5mxc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelBuyButtons" unique_id=1777820833]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046000004
+anchor_top = 0.096
+anchor_right = 0.952
+anchor_bottom = 0.45100003
+offset_left = 0.1819973
+offset_top = -0.15999985
+offset_right = -0.015991211
+offset_bottom = -0.085006714
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="ButtonBuyOne" type="Button" parent="PanelBuyButtons/HBoxContainer" unique_id=1570164495]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Buy 1"
+script = ExtResource("8_j7idd")
+use_small_button_sound = true
+
+[node name="ButtonBuyTen" type="Button" parent="PanelBuyButtons/HBoxContainer" unique_id=1862904143]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Buy 10"
+script = ExtResource("8_j7idd")
+use_small_button_sound = true
+
+[node name="ButtonBuyHundred" type="Button" parent="PanelBuyButtons/HBoxContainer" unique_id=398786562]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Buy 100"
+script = ExtResource("8_j7idd")
+use_small_button_sound = true
+
+[node name="ButtonBuyMax" type="Button" parent="PanelBuyButtons/HBoxContainer" unique_id=254800324]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Buy Max"
+script = ExtResource("8_j7idd")
+use_small_button_sound = true
 
 [connection signal="pressed" from="ThemeTextureButton" to="." method="_on_theme_texture_button_pressed"]
 [connection signal="pressed" from="PrestigeButton" to="." method="_on_prestige_button_pressed"]

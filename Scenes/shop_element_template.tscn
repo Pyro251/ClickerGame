@@ -29,12 +29,22 @@ corner_radius_bottom_left = 25
 shadow_size = 20
 shadow_offset = Vector2(0, 12.71)
 
+[sub_resource type="LabelSettings" id="LabelSettings_crix0"]
+font_size = 75
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 14
+shadow_color = Color(0, 0, 0, 0.2509804)
+shadow_offset = Vector2(4.045, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sgep8"]
+font_size = 33
+font_color = Color(0.38299868, 0.52738714, 0.3626849, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_lw0in"]
 font_size = 33
 
 [node name="ShopElementTemplate" type="Button" unique_id=86724086]
 custom_minimum_size = Vector2(300, 300)
-custom_maximum_size = Vector2(300, 300)
 anchors_preset = -1
 anchor_left = 0.047000002
 anchor_top = 0.018000001
@@ -55,23 +65,26 @@ script = ExtResource("2_sgep8")
 use_small_button_sound = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1626312021]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 14.0
-offset_right = 287.0
-offset_bottom = 255.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.040000003
+anchor_top = 0.047000002
+anchor_right = 0.957
+anchor_bottom = 0.85
+offset_top = -0.10000038
+offset_right = -0.1000061
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=678429146]
 layout_mode = 2
 text = "Title"
-label_settings = SubResource("LabelSettings_lw0in")
+label_settings = SubResource("LabelSettings_crix0")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="CostLabel" type="Label" parent="VBoxContainer" unique_id=1346119590]
 layout_mode = 2
 text = "####$"
-label_settings = SubResource("LabelSettings_lw0in")
+label_settings = SubResource("LabelSettings_sgep8")
 horizontal_alignment = 1
 
 [node name="DescriptionRichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=332254037]

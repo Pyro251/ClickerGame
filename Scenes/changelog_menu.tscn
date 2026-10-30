@@ -133,7 +133,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 35
 
-[node name="ChangelogElement8" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+[node name="ChangelogElement9" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1520556494 instance=ExtResource("7_auxqp")]
+layout_mode = 2
+version = "v1.1.4"
+version_description = "- Started shop revamp
+	+ Shop now shows you how much money per second you make
+	+ Shop is reorganized, with buttons for buying different amounts (the don't work yet)
+	+ Shop buttons have cost highlighted"
+
+[node name="ChangelogElement8" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1841094038 instance=ExtResource("7_auxqp")]
 layout_mode = 2
 version = "v1.1.3"
 version_description = "- Bottom menu on the main screen now collapses
